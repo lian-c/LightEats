@@ -8,5 +8,5 @@ CREATE TABLE
         name VARCHAR(255),
         phone_number VARCHAR(10) unique,
         role VARCHAR(255),
-        status INT
+        status BOOLEAN
     );
