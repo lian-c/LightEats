@@ -1,8 +1,12 @@
-DROP TABLE IF EXISTS restaurants CASCADE;
+DROP TABLE IF EXISTS menu_items CASCADE;
 
 CREATE TABLE
-    restaurants(
+    menu_items(
         id SERIAL PRIMARY,
-        name TEXT,
-        owner INT REFERENCES users(id)
+        name VARCHAR((255)),
+        description TEXT,
+        price INT,
+        food_photo_url TEXT,
+        prep_time SMALLINT,
+        available BOOLEAN
     );
