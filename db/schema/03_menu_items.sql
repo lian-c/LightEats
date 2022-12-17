@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS menu_items CASCADE;
 
 CREATE TABLE
     menu_items(
-        id SERIAL PRIMARY,
+        id SERIAL PRIMARY KEY,
         name VARCHAR((255)),
         description TEXT,
         price INT,
