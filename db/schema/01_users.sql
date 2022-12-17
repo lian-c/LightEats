@@ -5,8 +5,8 @@ CREATE TABLE
         id SERIAL PRIMARY,
         email VARCHAR(255) unique,
         password VARCHAR(255),
-        phoneNumber VARCHAR(10) unique,
         name VARCHAR(255),
-        createdAt DATE,
+        phone_number VARCHAR(10) unique,
+        role VARCHAR(255),
         status INT
     );
