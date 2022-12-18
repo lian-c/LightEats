@@ -8,5 +8,5 @@ CREATE TABLE
         price INT,
         food_photo_url TEXT,
         prep_time SMALLINT,
-        available BOOLEAN
+        available BOOLEAN DEFAULT TRUE
     );
