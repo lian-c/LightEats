@@ -8,5 +8,6 @@ CREATE TABLE
         price INT,
         food_photo_url TEXT,
         prep_time SMALLINT,
+        is_featured BOOLEAN DEFAULT FALSE,
         available BOOLEAN DEFAULT TRUE
     );
