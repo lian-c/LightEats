@@ -18,7 +18,6 @@
 * As a logged in user I want to have a wishlist so I can try items in the future that interest me.
 * As a logged in user I want to see updates on when my order will be ready because I want to know when I can pick it up.
 
-
 ### Admins (Owner)
 * As an admin I can edit the menu, because I own the restaurant.
 * As an admin I can view customer orders because I want to see which orders to fulfill.
