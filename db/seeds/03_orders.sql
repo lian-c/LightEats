@@ -1,15 +1,15 @@
-INSERT INTO orders (customer_id, completed)
+INSERT INTO orders (user_id, order_status)
 VALUES 
-(3, true), 
-(5, true),
-(4, true),
-(4, true), 
-(5, true),
-(6, true),
-(8, true),
-(7, true),
-(4, true), 
-(5, false),
-(6, true),
-(8, true),
-(7, false);
+(3, 'completed'), 
+(5, 'completed'),
+(4, 'completed'),
+(4, 'completed'), 
+(5, 'completed'),
+(6, 'completed'),
+(8, 'completed'),
+(7, 'completed'),
+(4, 'completed'), 
+(5, 'processing'),
+(6, 'completed'),
+(8, 'completed'),
+(7, 'new');
