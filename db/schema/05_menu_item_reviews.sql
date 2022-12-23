@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS menu_item_review CASCADE;
+DROP TABLE IF EXISTS menu_item_reviews CASCADE;
 CREATE TABLE
-    menu_item_review(
+    menu_item_reviews (
         id SERIAL PRIMARY KEY,
         menu_item_id INT REFERENCES menu_items(id),
         rating SMALLINT,
