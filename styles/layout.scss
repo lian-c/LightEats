@@ -1,6 +1,39 @@
 // See: https://sass-lang.com/
-
-body,
-html {
-  margin: 0;
+body {
+  background-color: rgb(238, 236, 235);
 }
+
+header {
+  margin-top: 0px;
+  height: 100px;
+  background-color:transparent;
+};
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  font-size: larger;
+  align-items: flex-start;
+};
+
+a {
+  font-weight: bolder;
+  border-right: 2em;
+  width: 8em;
+  };
+
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  max-width: 20em;
+};
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  width: 8em;
+  margin-right: 0px;
+};
