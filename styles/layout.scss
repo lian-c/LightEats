@@ -1,6 +1,6 @@
 // See: https://sass-lang.com/
 body {
-  background-color: rgb(238, 236, 235);
+  background-color: rgba(228, 225, 225, 0.959);
 }
 
 header {
@@ -17,13 +17,7 @@ nav {
   align-items: flex-start;
 };
 
-a {
-  font-weight: bolder;
-  border-right: 2em;
-  width: 8em;
-  };
-
-.logo {
+#logo {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -31,9 +25,19 @@ a {
   max-width: 20em;
 };
 
-.nav-links {
-  display: flex;
-  justify-content: space-between;
-  width: 8em;
-  margin-right: 0px;
-};
+button {
+  border: transparent;
+  background-color:  transparent;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+button:hover {
+  background-color: #8e3e87;
+  color: white;
+}
+
+.home {
+  width: 50px;
+  cursor: pointer;
+}

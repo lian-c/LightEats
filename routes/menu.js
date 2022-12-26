@@ -9,10 +9,10 @@ router.get('/', (req, res) => {
       const wingItems = [];
       const dipItems = [];
       const beverageItems = [];
-      for(let item of menuItems) {
+      for (let item of menuItems) {
         if (item.description === 'pizza') {
           pizzaItems.push(item);
-        } 
+        }
         if (item.description === 'chicken wings') {
           wingItems.push(item);
         }
@@ -23,14 +23,13 @@ router.get('/', (req, res) => {
           beverageItems.push(item);
         }
       }
-      console.log(pizzaItems);
       const templateVars = {
         pizzas: pizzaItems,
         wings: wingItems,
         dips: dipItems,
-        beverages: beverageItems 
+        beverages: beverageItems
       };
-      res.render("menu", templateVars);
+      res.json(templateVars);
     })
     .catch(err => {
       res
