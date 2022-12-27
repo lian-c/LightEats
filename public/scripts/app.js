@@ -2,7 +2,12 @@ $(() => {
 
   $.get('/menu/featured')
     .then(featured => {
-      $('main').append(`<div class="cards"></div>`);
+      $('main').append(`
+      <div class="featured-tems">
+        <h1>Our Featured Items</h1>
+        <div class="cards"></div>
+      </div>
+      `);
       
       for (featureItem of featured) {
         $('.cards').append(`
