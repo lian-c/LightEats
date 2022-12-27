@@ -1,6 +1,6 @@
 const express = require('express');
-const router  = express.Router();
-const {getMenu} = require('../db/queries/menu');
+const router = express.Router();
+const { getMenu, getFeatured } = require('../db/queries/menu');
 
 router.get('/', (req, res) => {
   getMenu()
@@ -39,5 +39,14 @@ router.get('/', (req, res) => {
 });
 
 
+router.get('/featured', (req, res) => {
+  getFeatured()
+    .then(featuredItems => res.json(featuredItems))
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
 
 module.exports = router;

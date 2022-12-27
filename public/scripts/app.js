@@ -1,8 +1,8 @@
-// Client facing scripts here
 $(() => {
 
-  $.ajax("/", { method: "GET" })
-  .then(() => {
-  });
+  $.get('/menu/featured')
+    .then(featured => {
+      console.log("Response", featured);
 
+    });
 });

@@ -6,4 +6,10 @@ const getMenu = () => {
     .catch(err => err.message);
 };
 
-module.exports = { getMenu };
+const getFeatured = () => {
+  return db.query('SELECT * FROM menu_items WHERE is_featured = true;')
+    .then(data => data.rows)
+    .catch(err => err.message);
+
+}
+module.exports = { getMenu, getFeatured };
