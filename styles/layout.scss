@@ -42,3 +42,19 @@ button:hover {
   width: 50px;
   cursor: pointer;
 }
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: inline mandatory;
+  scroll-behavior: smooth;
+  transition: all 750ms ease;
+
+}
+.card {
+  flex-shrink: 0;
+  flex-basis: 15em;
+  scroll-snap-align: start;
+  padding: 1%;
+}
