@@ -3,7 +3,7 @@ $(() => {
   $.get('/menu/featured')
     .then(featured => {
       $('main').append(`
-      <div class="featured-tems">
+      <div class="featured-items">
         <h1>Our Featured Items</h1>
         <div class="cards"></div>
       </div>

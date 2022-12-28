@@ -7,7 +7,7 @@ INSERT INTO menu_items (
      ('hawaiian pizza', 'pizza', 15, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/pizza/pizza.hawaiian.6c049fb1897c6f45f597dd1671fbd016.1.jpg?width=251', 22,True),
      ('meat lovers pizza', 'pizza', 15, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/pizza/pizza.meat-lovers.0eca41e1ef70793e60c2975447a6495c.1.jpg?width=251', 22,True),
      ('veggie lovers pizza', 'pizza', 15, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/pizza/pizza.veggie-lovers.48ba54d49ff2257671521b477967633a.1.jpg?width=251', 22,True),
-     ('8 pc chicken wings', 'chicken wings', 8, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/wings/wings.boneless-bites.8316cf4271f12ae32647b109979842a8.1.jpg?width=251', 10,True),
+     ('8 pc chicken wings', 'chicken wings', 8, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/wings/wings.boneless-bites.8316cf4271f12ae32647b109979842a8.1.jpg?width=251', 10,False),
      ('20 pc chicken wings', 'chicken wings', 10, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/wings/wings.boneless-bites.8316cf4271f12ae32647b109979842a8.1.jpg?width=251', 20,True),
      ('bbq', 'dipping sauce', 0, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/wings/wings.dips.1b498a4e555edfa4d2f56d89966c707a.1.jpg?width=251', 1, False),
      ('blue cheese', 'dipping sauce', 0, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/wings/wings.dips.1b498a4e555edfa4d2f56d89966c707a.1.jpg?width=251', 1, False),

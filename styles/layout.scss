@@ -1,13 +1,19 @@
 // See: https://sass-lang.com/
 body {
-  background-color: rgb(250, 250, 250);
   text-transform: capitalize; 
 }
 
+main {
+  margin-top: 100px;
+}
+
 header {
-  margin-top: 0px;
-  height: 100px;
-  background-color:transparent;
+  height: 50px;
+  background-color:black;
+  position:fixed;
+  width:100%;
+  top: 0;
+
 };
 
 nav {
@@ -26,21 +32,31 @@ nav {
   max-width: 20em;
 };
 
-button {
+nav button {
   border: transparent;
   background-color:  transparent;
   cursor: pointer;
   font-weight: bolder;
+  color: rgb(255, 255, 255);
 }
 
-button:hover {
-  background-color: #8e3e87;
-  color: white;
+nav button:hover {
+  color: rgb(141, 82, 82);
 }
 
 .home {
   width: 50px;
   cursor: pointer;
+}
+
+.intro2 {
+  display:flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.featured-items {
+  margin: 10% 5%;
 }
 
 .cards {
@@ -57,4 +73,48 @@ button:hover {
   flex-basis: 15em;
   scroll-snap-align: start;
   padding: 1%;
+}
+
+
+footer {
+  display: flex;
+  height: 150px;
+  background-color: rgb(207, 204, 204);
+  
+}
+
+#footer-logo {
+  padding: 2%;
+}
+.resturant-info {
+  font-weight:700;
+  width: 35%;
+ 
+}
+
+footer button {
+  background-color: transparent;
+  border: none;
+  font-size: medium;
+  cursor: pointer;
+  color: rgb(131, 130, 130);
+}
+
+.footer-list {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.css-gum15l {
+  display: flex;
+  width:50%;
+}
+
+.css-173idjp {
+margin-top: 10px;
+}
+
+.css-ouid3g {
+ 
 }
