@@ -19,8 +19,8 @@ $(() => {
 
 
 /*Helper function takes in two arguments:
-1.the name of the menu sub-type, eg: pizza, as a string 
-2.the array of all the items inside that sub-type, eg : array of pizzas 
+1.the name of the menu sub-type, eg: pizza, as a string
+2.the array of all the items inside that sub-type, eg : array of pizzas
 then categorizes each item according to it's category and using JQuery inserts all menu items into the DOM
 */
 const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
@@ -39,6 +39,9 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
                                 <div class="menu-details">
                                 <p class="menu-item-name">${eachItem.name} </p>
                                 <p class="menu-item-price">$${eachItem.price} </p>
+                                <form name="addToCartForm">
+    <input type="submit" id="menuID${eachItem.id}" value="Add to cart"/>
+ </form>
                                 </div>
                                 </div>
                                 `)
