@@ -18,4 +18,4 @@ INSERT INTO menu_items (
      ('water', 'beverage', 0, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/drink/drink.bottle-aquafina-2A.d09136e18ceb2f175b7249aca4aa85cf.1.jpg?width=251', 2, False),
      ('pepsi', 'beverage', 0, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/drink/drink.pepsi.b71560da143bf3da099dcc1d9017ef01.1.jpg?width=251', 2, False),
      ('7 up', 'beverage', 0, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/drink/drink.7up.7a1925da523094943917270945a29b76.1.jpg?width=251', 2, False),
-     ('root beer', 'beverage', 0, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/drink/drink.dr-pepper.0cdf6d9c733773dae9b6a6d158594751.1.jpg?width=251', 2, False);    
+     ('root beer', 'beverage', 0, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/drink/drink.dr-pepper.0cdf6d9c733773dae9b6a6d158594751.1.jpg?width=251', 2, False);
