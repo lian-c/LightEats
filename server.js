@@ -6,7 +6,6 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
-const crypto = require('crypto');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -62,16 +61,12 @@ app.get('/login', (req, res) => {
 
 app.post("/login", (req, res) => {
   const user = users.filter(user => user.email === req.body.email);
-  console.log(user)
-
   if (user.length !== 1) {
     console.log('failed login')
     return res.status(401).json({ error: "Login error" });
   }
-  else {
-    req.session.userId = user.id;
-    res.status(200).json(user);
-  }
+  req.session.userId = user[0].id;
+  res.status(200).json(user);
 });
 
 app.post("/register", (req, res) => {
@@ -80,6 +75,7 @@ app.post("/register", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
+  console.log(req.session)
   res.send(`Fake Profile Page for user ${req.session.userId}`);
 })
 
