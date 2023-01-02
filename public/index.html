@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/menu.js"></script>
+  <script type="text/javascript" src="/scripts/auth.js"></script>
 </head>
 
 <body>
@@ -29,23 +30,19 @@
   <!-- Login and Register Modal Start -->
   <div id="login-modal" class="modal">
     <h2>Login</h2>
-    <form action="/login" method="post">
-      <input type="email" name="email" placeholder="Email" />
-      <input type="password" name="password" placeholder="Password" />
-      <button type="submit">Login</button>
+      <input type="email" name="email" id="loginEmail" placeholder="Email" />
+      <input type="password" name="password" id="loginPassword" placeholder="Password" />
+      <button id="login-submit" type="submit">Login</button>
       <a href="">Register</a>
-    </form>
     <a class="close-modal-link" href="#" rel="modal:close">Close</a>
   </div>
 
   <div id="register-modal" class="modal">
     <h2>Register</h2>
-    <form action="/register" method="post">
-      <input type="email" name="email" placeholder="Email" />
-      <input type="password" name="password" placeholder="Password" />
-      <button type="submit">Register</button>
+      <input type="email" name="email" id="registerEmail" placeholder="Email" />
+      <input type="password" name="password" id="registerPassword" placeholder="Password" />
+      <button id="register-submit" type="submit">Register</button>
       <a href="">Login</a>
-    </form>
     <a class="close-modal-link" href="#" rel="modal:close">Close</a>
   </div>
   <!-- Login and Register Modals end -->

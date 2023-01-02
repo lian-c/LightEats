@@ -61,13 +61,20 @@ app.get('/login', (req, res) => {
 });
 
 app.post("/login", (req, res) => {
+  console.log(req.body)
   const user = users.filter(user => user.email === req.body.email);
 
+  console.log(user)
   if (!user) {
-    res.status(401).json({ error: "Login error" });
+    return res.status(401).json({ error: "Login error" });
   }
   req.session.userId = user.id;
   res.status(200).json(user);
+});
+
+app.post("/register", (req, res) => {
+  console.log(req.body);
+  res.status(201).json({message: "registered"})
 });
 
 app.get("/profile", (req, res) => {
