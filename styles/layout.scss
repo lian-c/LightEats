@@ -1,6 +1,7 @@
 // See: https://sass-lang.com/
 body {
-  text-transform: capitalize; 
+  text-transform: capitalize;
+  color: #000;
 }
 
 main {
@@ -9,7 +10,7 @@ main {
 
 header {
   height: 50px;
-  background-color:black;
+  background-color: transparent;
   position:fixed;
   width:100%;
   top: 0;
@@ -80,7 +81,7 @@ footer {
   display: flex;
   height: 150px;
   background-color: rgb(207, 204, 204);
-  
+
 }
 
 #footer-logo {
@@ -89,7 +90,7 @@ footer {
 .resturant-info {
   font-weight:700;
   width: 35%;
- 
+
 }
 
 footer button {
@@ -116,5 +117,5 @@ margin-top: 10px;
 }
 
 .css-ouid3g {
- 
+
 }
