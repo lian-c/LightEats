@@ -2,8 +2,8 @@ $(() => {
   $("#menu-button").click(() => {
     $('main').empty();
     $('#menu-button').remove();
-    $('nav').prepend(`<a href="/"><img class="home" src ="https://irp.cdn-website.com/a9e4f39a/DESKTOP/png/the-slice-house-logo.png"></a>`);
-
+    $('nav').prepend(`<a href="/"><img class="home" src ="../images/the-slice-house-logo.png"></a>`);
+    $('body,html').animate({scrollTop: $('main').offset().top}, 800);
 
     $.get('/menu')
       .then((response) => {

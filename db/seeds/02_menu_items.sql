@@ -1,7 +1,7 @@
 INSERT INTO menu_items (
     name, description, prep_time, food_photo_url, price, is_featured)
     VALUES 
-     ('cheese pizza', 'pizza', 15, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/pizza/pizza.cheese-lovers.21455ca09617c38f3618f2b525dfed42.1.jpg?width=251', 20,True),
+     ('cheese pizza', 'pizza', 15, '../../public/images/pizza.cheese-lovers.jpg', 20,True),
      ('perpperoni pizza', 'pizza', 15, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/pizza/pizza.pepperoni-lovers.69f7bdf7b6f50a87eb2886934fe0be9f.1.jpg?width=251', 20,True),
      ('deluxe pizza', 'pizza', 15, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/pizza/pizza.triple-crown.5df2afc676d03bcb5b466d666e466d50.1.jpg?width=251', 22,True),
      ('hawaiian pizza', 'pizza', 15, 'https://api.pizzahut.io/v1/content/en-ca/ca-1/images/pizza/pizza.hawaiian.6c049fb1897c6f45f597dd1671fbd016.1.jpg?width=251', 22,True),
