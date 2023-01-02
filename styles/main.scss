@@ -1,6 +1,32 @@
 * {
   font-family: "Montserrat", sans-serif;
 }
+a:link {
+  color: #cc0000;
+  text-decoration: none;
+}
+a:visited {
+  color: #cc0000;
+}
+
+a:hover {
+  color: #000;
+}
+
+
+#login-modal
+{
+  background-color: #efefef;
+}
+
+
+
+.close-modal-link
+{
+  font-size: .6em;
+  margin-top: 2em;
+}
+
 
 .hero {
   background: url(../images/pizza-hero.jpg) no-repeat center;
@@ -10,7 +36,7 @@
   width: 100%;
 }
 .hero > .box {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   text-align: center;
   text-transform: uppercase;
   position: absolute;
@@ -31,7 +57,6 @@
   color: #fff;
   font-size: 2em;
   font-weight: 400;
-
 }
 .hero > .box > button {
   background-color: #cc0000;
