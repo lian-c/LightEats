@@ -1,8 +1,8 @@
 INSERT INTO menu_items (
     name, description, prep_time, food_photo_url, price, is_featured)
-    VALUES 
+    VALUES
      ('cheese pizza', 'pizza', 15, 'images/pizza.cheese-lovers.jpg', 20,True),
-     ('perpperoni pizza', 'pizza', 15, 'images/pizza.pepperoni-lovers.jpg', 20,True),
+     ('pepperoni pizza', 'pizza', 15, 'images/pizza.pepperoni-lovers.jpg', 20,True),
      ('deluxe pizza', 'pizza', 15, 'images/pizza.deluxe.jpg', 22,True),
      ('hawaiian pizza', 'pizza', 15, 'images/pizza.hawaiian.jpg', 22,True),
      ('meat lovers pizza', 'pizza', 15, 'images/pizza.meat-lovers.jpg', 22,True),
