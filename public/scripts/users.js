@@ -1,25 +1,18 @@
-// const loginUrl = "http://localhost:8080/login";
-// const registerUrl = "http://localhost:8080/register";
-// // Login and Register AJAX Functions.
+let user = {};
 
 $(() => {
-  
-  $('#logout').click(() => {
-    $.post('/users/logout')
-      .then(response => {
-        $('#login-button').show()
-        console.log(response);
-  })
-  
+
+  $("#logout-button").click(() => {
+    $("#login-button").show();
+    console.log("click worked");
   });
-  
+
   $.get('/users')
     .then(usersDataResponse => {
       const userID = usersDataResponse.userLoggedIn;
-      let user = {};
+      
       usersDataResponse.usersData.forEach(element => {
         if (element.id == userID) {
-          console.log(typeof element);
           user = element;
         }
 
@@ -30,11 +23,11 @@ $(() => {
 
       if (userID) {
         $('#login-button').hide();
-        $('#register-button').hide()
-        $('.right-navlinks').prepend(`Hello ${user.name.split(' ')[0]}`)
-        $('.right-navlinks').append(`<button id="logout">Logout</button>`)
+        $('#register-button').hide();
+        $('.right-navlinks').prepend(`Hello ${user.name.split(' ')[0]}`);
+        $('.right-navlinks').append(`<button id="logout-button">Logout</button>`);
       }
-    })
+    });
 
 
 
@@ -50,7 +43,13 @@ $(() => {
         for (userData of usersData) {
           if (email === userData.email && password === userData.password) {
             $.post('/users/login', { userID: userData.id })
-              .then($.modal.close());
+              .then(() => {
+                $.modal.close();
+            $('#login-button').hide();
+            $('#register-button').hide();
+            $('.right-navlinks').prepend(`Hello ${user.name.split(' ')[0]}`);
+            $('.right-navlinks').append(`<button id="logout-button">Logout</button>`);
+          });
           }
         }
       });

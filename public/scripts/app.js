@@ -1,5 +1,5 @@
 $(() => {
-
+  
  
   $.get('/menu/featured')
     .then(featured => {
