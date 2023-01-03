@@ -24,12 +24,14 @@ $(() => {
   $("#register-submit").click(() => {
     const email = $("#registerEmail").val();
     const password = $("#registerPassword").val();
+    const name = $("#registerName").val();
+    const phone = $("#registerPhone").val();
 
     $.post(
       registerUrl,
-      { email: email, password: password },
+      { name: name, phone: phone ,email: email, password: password },
       (data, status) => {
-        if (data.length !== 1) {
+        if (data.length < 1) {
           return console.log("error", data);
         }
         $.modal.close();
