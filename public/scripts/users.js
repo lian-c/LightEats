@@ -14,20 +14,30 @@ $(() => {
       for(userData of usersData) {
         if (email === userData.email && password === userData.password) {
           $.post('/users/login', {userID: userData.id})
+          .then($("#login-button").hide())
+          .then($("#register-button").hide())
+          .then($("#logout-button").show())
           .then($.modal.close());
         }
       }
 
     })
+  });
+//still working on this
+  $("#logout-button").click(() => {
+    req.session = null;
+    $("#login-button").show()
+    $("#register-button").show()
+    $("#logout-button").hide()
+  });
 
   //   $.post(loginUrl, { email: email, password: password }, (data, status) => {
   //     if (data.length !== 1) {
   //       return console.log("error", data);
   //     }
-      
+
   //     return console.log(data);
 
-    });
 
   });
 
