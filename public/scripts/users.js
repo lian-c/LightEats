@@ -3,16 +3,19 @@
 // // Login and Register AJAX Functions.
 
 $(() => {
-  
-  $('#logout').click(() => {
+
+  $('#logout-button').click(() => {
     $.post('/users/logout')
       .then(response => {
         $('#login-button').show()
+        $('#register-button').show()
+        $("#logout-button").hide()
+        $(".welcome").hide();
         console.log(response);
   })
-  
+
   });
-  
+
   $.get('/users')
     .then(usersDataResponse => {
       const userID = usersDataResponse.userLoggedIn;
@@ -28,34 +31,47 @@ $(() => {
 
       console.log('userObject', user);
 
-      if (userID) {
-        $('#login-button').hide();
-        $('#register-button').hide()
-        $('.right-navlinks').prepend(`Hello ${user.name.split(' ')[0]}`)
-        $('.right-navlinks').append(`<button id="logout">Logout</button>`)
-      }
+      // if (userID) {
+      //   $('#login-button').hide();
+      //   $('#register-button').hide()
+      //   $('.right-navlinks').append(`<button id="logout">Logout</button>`)
+      // }
     })
 
 
 
-  // Login AJAX Post
-  $("#login-submit").click(() => {
-    const email = $("#loginEmail").val();
-    const password = $("#loginPassword").val();
+    // Login AJAX Post
+    $("#login-submit").click(() => {
+      const email = $("#loginEmail").val();
+      const password = $("#loginPassword").val();
 
-    $.get('/users')
+      $.get('/users')
       .then(usersResonse => {
         const usersData = usersResonse.usersData;
 
-        for (userData of usersData) {
+        for(userData of usersData) {
           if (email === userData.email && password === userData.password) {
-            $.post('/users/login', { userID: userData.id })
-              .then($.modal.close());
-          }
+            $.post('/users/login', {userID: userData.id})
+            .then($("#login-button").hide())
+            .then($("#register-button").hide())
+            .then($("#logout-button").show())
+            .then($.modal.close())
+            .then($('.right-navlinks').prepend(`<span class="welcome">Hello ${userData.name.split(' ')[0]}</span>`));
         }
-      });
+      }
+
+    })
+
+  //   $.post(loginUrl, { email: email, password: password }, (data, status) => {
+  //     if (data.length !== 1) {
+  //       return console.log("error", data);
+  //     }
+
+  //     return console.log(data);
+
+    });
+
   });
 
-});
 
 
