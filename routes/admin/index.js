@@ -4,10 +4,9 @@ const menuRoute = require("./menu");
 const messageRoute = require("./message");
 const orderRoute = require("./order");
 
-router.get("/", (req, res) =>
-{ 
-  res.status(200).json({message: "Admin Route"})
-})
+
+router.use("/", express.static('public/admin'));
+
 
 router.use("/menu", menuRoute);
 router.use("/message", messageRoute);
