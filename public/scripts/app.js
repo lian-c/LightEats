@@ -8,7 +8,7 @@ $(() => {
         <div class="cards"></div>
       </div>
       `);
-      
+
       for (featureItem of featured) {
         $('.cards').append(`
         <div class="card">
@@ -19,5 +19,15 @@ $(() => {
       }
 
 
+    });
+
+    $(window).scroll(function() {
+      let scroll = $(window).scrollTop();
+      let header = $('.hero').height();
+      if(scroll > header){
+        $("nav").addClass("scroll")
+      } else {
+        $("nav").removeClass("scroll")
+      }
     });
 });

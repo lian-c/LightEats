@@ -25,6 +25,11 @@ nav {
   align-items: flex-start;
 };
 
+nav.scroll {
+  height: 50px;
+  background-color: rgb(255, 30, 0);
+}
+
 #cart-button {
   font-size:22px;
 }
