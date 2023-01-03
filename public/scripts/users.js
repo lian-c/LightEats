@@ -3,13 +3,49 @@
 // // Login and Register AJAX Functions.
 
 $(() => {
+
+  $('#logout').click(() => {
+    $.post('/users/logout')
+      .then(response => {
+        $('#login-button').show()
+        console.log(response);
+  })
+
+  });
+
+  $.get('/users')
+    .then(usersDataResponse => {
+      const userID = usersDataResponse.userLoggedIn;
+      let user = {};
+      usersDataResponse.usersData.forEach(element => {
+        if (element.id == userID) {
+          console.log(typeof element);
+          user = element;
+        }
+
+      });
+
+
+      console.log('userObject', user);
+
+      if (userID) {
+        $('#login-button').hide();
+        $('#register-button').hide()
+        $('.right-navlinks').prepend(`Hello ${user.name.split(' ')[0]}`)
+        $('.right-navlinks').append(`<button id="logout">Logout</button>`)
+      }
+    })
+
+
+
   // Login AJAX Post
   $("#login-submit").click(() => {
     const email = $("#loginEmail").val();
     const password = $("#loginPassword").val();
 
     $.get('/users')
-    .then(usersData => {
+      .then(usersResonse => {
+        const usersData = usersResonse.usersData;
 
       for(userData of usersData) {
         if (email === userData.email && password === userData.password) {
@@ -22,14 +58,6 @@ $(() => {
       }
 
     })
-  });
-//still working on this
-  $("#logout-button").click(() => {
-    req.session = null;
-    $("#login-button").show()
-    $("#register-button").show()
-    $("#logout-button").hide()
-  });
 
   //   $.post(loginUrl, { email: email, password: password }, (data, status) => {
   //     if (data.length !== 1) {
@@ -38,24 +66,9 @@ $(() => {
 
   //     return console.log(data);
 
+    });
 
   });
 
-  // Register AJAX Post
-//   $("#register-submit").click(() => {
-//     const email = $("#registerEmail").val();
-//     const password = $("#registerPassword").val();
 
-//     $.post(
-//       registerUrl,
-//       { email: email, password: password },
-//       (data, status) => {
-//         if (data.length !== 1) {
-//           return console.log("error", data);
-//         }
-//         $.modal.close();
-//         return console.log(data);
-//       }
-//     );
-//   });
-// });
+

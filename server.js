@@ -45,6 +45,8 @@ const usersRoutes = require('./routes/users');
 const menuRoutes = require('./routes/menu');
 const orderRoutes = require('./routes/order');
 
+const adminRoutes = require("./routes/admin")
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -86,6 +88,7 @@ const orderRoutes = require('./routes/order');
 app.use('/users', usersRoutes);
 app.use('/menu', menuRoutes);
 app.use('/order', orderRoutes)
+app.use("/admin", adminRoutes)
 // Note: mount other resources here, using the same pattern above
 
 // Home page
