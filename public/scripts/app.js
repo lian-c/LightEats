@@ -26,8 +26,10 @@ $(() => {
       let header = $('.hero').height();
       if(scroll > header){
         $("nav").addClass("scroll")
+        $(".home").hide();
       } else {
         $("nav").removeClass("scroll")
+        $(".home").show();
       }
     });
 });
