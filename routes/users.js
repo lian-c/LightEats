@@ -30,7 +30,7 @@ router.post("/login", (req, res) => {
   //   res.status(401).json({ error: "Login error" });
   // }
   req.session.userId = req.body.userID;
-  res.status(200).json(user);
+  res.status(200);
 });
 
 // router.get("/profile", (req, res) => {
