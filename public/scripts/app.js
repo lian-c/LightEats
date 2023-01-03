@@ -1,5 +1,6 @@
 $(() => {
 
+ 
   $.get('/menu/featured')
     .then(featured => {
       $('main').append(`
