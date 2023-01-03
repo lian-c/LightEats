@@ -40,7 +40,7 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
                                 <p class="menu-item-name">${eachItem.name} </p>
                                 <p class="menu-item-price">$${eachItem.price} </p>
                                 <form name="addToCartForm" method="POST" action="/order">
-    <input type="submit" id="menuID${eachItem.id}" value="Add to cart"/>
+    <input type="submit" id="menuID${eachItem.id}" class="add-item" value="Add to cart"/>
  </form>
                                 </div>
                                 </div>

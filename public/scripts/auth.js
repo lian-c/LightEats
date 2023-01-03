@@ -13,9 +13,11 @@ $(() => {
       if (data.length !== 1) {
         return console.log("error", data);
       }
-
+      $.modal.close();
       return console.log(data);
+
     });
+
   });
 
   // Register AJAX Post
@@ -30,7 +32,7 @@ $(() => {
         if (data.length !== 1) {
           return console.log("error", data);
         }
-
+        $.modal.close();
         return console.log(data);
       }
     );

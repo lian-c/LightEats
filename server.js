@@ -73,6 +73,7 @@ app.post("/login", (req, res) => {
 app.post("/register", (req, res) => {
   console.log(req.body);
   res.status(201).json({ message: "registered" })
+  
 });
 
 app.get("/profile", (req, res) => {
