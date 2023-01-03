@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const { getOrder } = require('../db/queries/order');
 
-router.post('/', (req,res) => {
-console.log("button clicked", res.params)
+router.get('/order/1', (req, res) => {
+  res.status(200).send('test')
 })
+
 module.exports = router;
