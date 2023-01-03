@@ -7,28 +7,35 @@
 
 const express = require('express');
 const router = express.Router();
+const { getUsers } = require('../db/queries/users');
 
-// fake user data.
 
-const {users} = require('../db/fakeUserData');
-
-router.get('/login', (req, res) => {
-  res.render('user/login');
+router.get('/', (req, res) => {
+  getUsers()
+  .then(usersData => {
+    res.json(usersData)
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  });
 });
 
 router.post("/login", (req, res) => {
-  const user = users.filter(user => user.email === req.body.email);
+  console.log(req.body);
+  // const user = users.filter(user => user.email === req.body.email);
 
-  if (!user) {
-    res.status(401).json({ error: "Login error" });
-  }
-  req.session.userId = user.id;
+  // if (!user) {
+  //   res.status(401).json({ error: "Login error" });
+  // }
+  req.session.userId = req.body.userID;
   res.status(200).json(user);
 });
 
-router.get("/profile", (req, res) => {
-  res.send(`Fake Profile Page for user ${req.session.userId}`);
-})
+// router.get("/profile", (req, res) => {
+//   res.send(`Fake Profile Page for user ${req.session.userId}`);
+// })
 
 
 module.exports = router;

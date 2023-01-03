@@ -41,8 +41,6 @@ app.use(cookieSession({
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const userApiRoutes = require('./routes/users-api');
-const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const menuRoutes = require('./routes/menu');
 const orderRoutes = require('./routes/order');
@@ -55,37 +53,36 @@ const orderRoutes = require('./routes/order');
 
 
 // fake login starts here ///
-const { users } = require('./db/fakeUserData');
-app.get('/login', (req, res) => {
-  res.render('user/login');
-});
+// const { users } = require('./db/fakeUserData');
+// app.get('/login', (req, res) => {
+//   res.render('user/login');
+// });
 
-app.post("/login", (req, res) => {
-  const user = users.filter(user => user.email === req.body.email);
-  if (user.length !== 1) {
-    console.log('failed login')
-    return res.status(401).json({ error: "Login error" });
-  }
-  req.session.userId = user[0].id;
-  res.status(200).json(user);
-});
+// app.post("/login", (req, res) => {
+//   const user = users.filter(user => user.email === req.body.email);
+//   if (user.length !== 1) {
+//     console.log('failed login')
+//     return res.status(401).json({ error: "Login error" });
+//   }
+//   req.session.userId = user[0].id;
+//   res.status(200).json(user);
+// });
 
-app.post("/register", (req, res) => {
-  console.log(req.body);
-  res.status(201).json({ message: "registered" })
+// app.post("/register", (req, res) => {
+//   console.log(req.body);
+//   res.status(201).json({ message: "registered" })
   
-});
+// });
 
-app.get("/profile", (req, res) => {
-  console.log(req.session)
-  res.send(`Fake Profile Page for user ${req.session.userId}`);
-})
+// app.get("/profile", (req, res) => {
+//   console.log(req.session)
+//   res.send(`Fake Profile Page for user ${req.session.userId}`);
+// })
 
 // fake login ends here//
 
 
-app.use('/api/users', userApiRoutes);
-app.use('/api/widgets', widgetApiRoutes);
+
 app.use('/users', usersRoutes);
 app.use('/menu', menuRoutes);
 app.use('/order', orderRoutes)
