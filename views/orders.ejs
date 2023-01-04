@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/menu.css" />
+  <link rel="stylesheet" href="/styles/orders.css" />
   <!-- font-awesome icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -29,9 +30,13 @@
   <%- include('partials/_header') %>
 </head>
 <body>
-          <h2>
+
+        <div class="cheese">
+          <h1>
             Your order confirmation!
-          </h2>
+          </h1>
+          <p>Thank you for placing your order with Slice House!</p>
+          <p>Here is the summary of your order.</p>
 
 
           <table class="table">
@@ -39,30 +44,34 @@
 
               <tr>
                 <th scope="col">Product</th>
+                <th scope="col">Name</th>
                 <th scope="col">Price</th>
-
+                <th scope="col">Status</th>
               </tr>
             </thead>
 
             <tbody>
               <% for (let id of result) { %>
                 <tr>
+                  <td><img class="user-icon" src="../<%= id.food_photo_url %>"></td>
                   <td><%= id.name %></td>
                   <td><%= id.price %></td>
-
-
-
+                  <td><%= id.order_status %></td>
                 </tr>
                 <% } %>
-                <th scope="col">Total</th>
+
+                <th scope="col" class="total">Total</th>
 
               </tbody>
             </table>
-            <%= total %>
 
-<p>Estimated Time for Completion
-<%= prep %>
-</p>
+            <div class="total"><%= total %></div>
+
+            <p>Estimated Time for Completion
+              <%= prep %>
+            </p>
+          </div>
+          <!-- end of class cheese -->
 
 </body>
 </html>
