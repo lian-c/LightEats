@@ -36,8 +36,8 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
 
     let string = "ratings";
     if (eachItem.count === "1" ){
-      string = "rating"
-    }
+      string = "rating";
+    };
 
 
     $(`.${nameOfMenuSubType}`).append(`
@@ -70,8 +70,7 @@ function starReviews(average) {
   if (rating % 1 !== 0) stars.push('<i class="fa-solid fa-star-half-stroke"></i>&nbsp;');
 // empty stars out of 5
 for (let x = (5 - rating); x >= 1; x--){
-console.log(x)
     stars.push('<i class="fa-regular fa-star"></i>&nbsp;');
 }
   return stars.join('');
-}
+};

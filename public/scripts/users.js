@@ -2,16 +2,24 @@ let user = {};
 
 $(() => {
 
-  $('#logout-button').click(() => {
+  $('.logout-button').click(() => {
     $.post('/users/logout')
       .then(response => {
         $('#login-button').show()
         $('#register-button').show()
-        $("#logout-button").hide()
+        $(".logout-button").hide()
+        $(".order-button").hide()
         $(".welcome").hide();
         console.log(response);
   })
 
+  });
+//placeholder when my orders is pressed
+  $('.order-button').click(() => {
+    $.post('/order')
+      .then(response => {
+        console.log(response);
+  })
   });
 
   $.get('/users')
@@ -31,8 +39,10 @@ $(() => {
       if (userID) {
         $('#login-button').hide();
         $('#register-button').hide()
-        $("#logout-button").show()
+        $(".logout-button").show()
+        $(".order-button").show()
         $('.right-navlinks').prepend(`<span class="welcome">Hello ${user.name.split(' ')[0]}</span>`)
+
         $.modal.close()
       }
     })
@@ -53,7 +63,8 @@ $(() => {
             $.post('/users/login', {userID: userData.id})
             .then($("#login-button").hide())
             .then($("#register-button").hide())
-            .then($("#logout-button").show())
+            .then($(".logout-button").show())
+            .then($(".order-button").show())
             .then($.modal.close())
             .then($('.right-navlinks').prepend(`<span class="welcome">Hello ${userData.name.split(' ')[0]}</span>`));
         }
