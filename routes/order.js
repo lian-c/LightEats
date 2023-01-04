@@ -3,14 +3,9 @@ const router = express.Router();
 const { getOrder, calculateTotal } = require('../db/queries/order');
 
 
-router.get('/1', (req, res) => {
-  const calculateTotal = () => {
-    return db.query('SELECT  SUM(price) as Total, SUM(prep_time) as Cook_time FROM order_items INNER JOIN menu_items ON order_items.item_id=menu_items.id WHERE order_id=1;')
-    .then(data => data.rows)
-    .catch(err => err.message);
-  }
-
-  getOrder()
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  getOrder(id)
   .then(result => {
     const templateVars = { result:result}
     res.render("orders", templateVars);
@@ -19,11 +14,11 @@ router.get('/1', (req, res) => {
   res.status(200);
 })
 
-router.get('/1/total', (req, res) => {
-  calculateTotal()
+router.get('/:id/total', (req, res) => {
+  const id = req.params.id
+  getOrder(id)
   .then(result => {
-    const templateVars = { result:result}
-    res.json(templateVars)
+    res.json(result)
   })
   res.status(200);
 })
