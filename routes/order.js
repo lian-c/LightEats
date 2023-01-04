@@ -13,7 +13,9 @@ const calcTotal = (order, priceOrPrep ) => {
 }
 
 
-
+router.get('/checkout', (req,res) => {
+  res.status(200).send("checkout")
+})
 
 router.get('/:id', (req, res) => {
   const id = req.params.id

@@ -30,11 +30,12 @@ $(() => {
 
       if (userID) {
         $('#login-button').hide();
-        $('#register-button').hide();
-        $('.right-navlinks').prepend(`Hello ${user.name.split(' ')[0]}`);
-        $('.right-navlinks').append(`<button id="logout-button">Logout</button>`);
+        $('#register-button').hide()
+        $("#logout-button").show()
+        $('.right-navlinks').prepend(`<span class="welcome">Hello ${user.name.split(' ')[0]}</span>`)
+        $.modal.close()
       }
-    });
+    })
 
 
 
