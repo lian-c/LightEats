@@ -1,12 +1,10 @@
 // See: https://sass-lang.com/
 body {
-  text-transform: capitalize;
   color: #000;
   padding-top: 50px;
 }
 
 .title {
-  text-transform: capitalize;
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
   font-weight: bolder;
@@ -14,10 +12,20 @@ body {
   color: rgb(255, 255, 255);
 }
 
-.cheese {
+body .confirmation-message {
+  text-transform:initial;
   background:#f4f8fc;
-  padding:2rem 4rem;;
+  padding:5rem 4rem;;
   border-radius:12px;
-  max-width:600px;
+  max-width:900px;
   margin:0 auto;
+}
+
+h3.confirmation-message {
+  font-weight: 100;
+}
+
+.table {
+  text-transform: capitalize;
+  display:flexbox;
 }

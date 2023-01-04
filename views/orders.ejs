@@ -31,12 +31,13 @@
 </head>
 <body>
 
-        <div class="cheese">
+        <div class="confirmation-message">
           <h1>
-            Your order confirmation!
+            Your Order Confirmation!
           </h1>
-          <p>Thank you for placing your order with Slice House!</p>
-          <p>Here is the summary of your order.</p>
+          <h3>Thank you for placing your order with <b>SLICE HOUSE!</b>
+            <br>
+          Here is the summary of your order.</h3>
 
 
           <table class="table">
@@ -53,8 +54,8 @@
             <tbody>
               <% for (let id of result) { %>
                 <tr>
-                  <td><img class="user-icon" src="../<%= id.food_photo_url %>"></td>
-                  <td><%= id.name %></td>
+                  <td><img class="menu-photo" src="../<%= id.food_photo_url %>"></td>
+                  <td class="menu-subtype"><%= id.name %></td>
                   <td><%= id.price %></td>
                   <td><%= id.order_status %></td>
                 </tr>
@@ -66,7 +67,7 @@
             </table>
 
             <div class="total"><%= total %></div>
-
+            <div class="order-time">Placed at <%= result[0]['order_time']%></div>
             <p>Estimated Time for Completion
               <%= prep %>
             </p>
