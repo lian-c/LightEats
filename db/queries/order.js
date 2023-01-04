@@ -16,12 +16,12 @@ const getOrder = (order_id) => {
   .catch(err => err.message);
 }
 
-const calculateTotal = (order_id) => {
-  const query = 'SELECT  SUM(price) as Total, SUM(prep_time) as Cook_time FROM order_items INNER JOIN menu_items ON order_items.item_id=menu_items.id WHERE order_id= $1;'
-  const values = [order_id]
-  return db.query (query, values)
-  .then(data => data.rows)
-  .catch(err => err.message);
-}
+// const calculateTotal = (order_id) => {
+//   const query = 'SELECT  SUM(price) as Total, SUM(prep_time) as Cook_time FROM order_items INNER JOIN menu_items ON order_items.item_id=menu_items.id WHERE order_id= $1;'
+//   const values = [order_id]
+//   return db.query (query, values)
+//   .then(data => data.rows)
+//   .catch(err => err.message);
+// }
 
-module.exports = { newOrder, getOrder, calculateTotal };
+module.exports = { newOrder, getOrder};

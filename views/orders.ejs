@@ -55,16 +55,14 @@
                 </tr>
                 <% } %>
                 <th scope="col">Total</th>
-                <script>
-                  calculateTotal()
-                  .then(result => {
-                  const total = result.total}
-                  )
-                </script>
 
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+            <%= total %>
 
+<p>Estimated Time for Completion
+<%= prep %>
+</p>
 
 </body>
 </html>
