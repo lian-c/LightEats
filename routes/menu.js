@@ -41,12 +41,23 @@ router.get('/', (req, res) => {
 
 router.get('/featured', (req, res) => {
   getFeatured()
-    .then(featuredItems => res.json(featuredItems))
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
+  .then(featuredItems => res.json(featuredItems))
+  .catch(err => {
+    res
+    .status(500)
+    .json({ error: err.message });
+  });
 });
+
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  getReviews(id)
+  .then(result => {
+    res.json(result)
+  })
+  res.status(200);
+
+})
+
 
 module.exports = router;
