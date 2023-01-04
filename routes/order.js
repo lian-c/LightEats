@@ -29,7 +29,6 @@ router.post('/', (req, res) => {
             orderSummary.itemsOrdered.push(menuItem[0]);
             console.log('orderSummary', orderSummary);
           })
-
       });
 
     })
