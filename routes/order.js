@@ -34,6 +34,11 @@ router.get('/:id/json', (req, res) => {
   getOrder(id)
   .then(result => {
     const amount = calcTotal(result)
+    const templateVars = { result:result, total:amount}
+    res.json(templateVars)
+  })
+  res.status(200);
+})
 
 const { getUserIDByEmail, createGuestUser } = require('../db/queries/users');
 const { getMenuItemByID } = require('../db/queries/menu');
@@ -69,16 +74,6 @@ router.post('/', (req, res) => {
 
 
 });
-
-
-
-
-    const templateVars = { result:result, total:amount}
-    res.json(templateVars)
-  })
-  res.status(200);
-})
-
 
 
 
