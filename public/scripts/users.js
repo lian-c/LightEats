@@ -12,15 +12,12 @@ $(() => {
         console.log(response);
   })
 
-  $("#logout-button").click(() => {
-    $("#login-button").show();
-    console.log("click worked");
   });
 
   $.get('/users')
     .then(usersDataResponse => {
       const userID = usersDataResponse.userLoggedIn;
-      
+
       usersDataResponse.usersData.forEach(element => {
         if (element.id == userID) {
           user = element;
@@ -31,19 +28,14 @@ $(() => {
 
       console.log('userObject', user);
 
-      // if (userID) {
-      //   $('#login-button').hide();
-      //   $('#register-button').hide()
-      //   $('.right-navlinks').append(`<button id="logout">Logout</button>`)
-      // }
-    })
       if (userID) {
         $('#login-button').hide();
-        $('#register-button').hide();
-        $('.right-navlinks').prepend(`Hello ${user.name.split(' ')[0]}`);
-        $('.right-navlinks').append(`<button id="logout-button">Logout</button>`);
+        $('#register-button').hide()
+        $("#logout-button").show()
+        $('.right-navlinks').prepend(`<span class="welcome">Hello ${user.name.split(' ')[0]}</span>`)
+        $.modal.close()
       }
-    });
+    })
 
 
 

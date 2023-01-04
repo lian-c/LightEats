@@ -16,7 +16,9 @@ const calcTotal = (order, priceOrPrep) => {
 }
 
 
-
+router.get('/checkout', (req,res) => {
+  res.status(200).send("checkout")
+})
 
 router.get('/:id', (req, res) => {
   const id = req.params.id
@@ -35,8 +37,13 @@ router.get('/:id', (req, res) => {
 router.get('/:id/json', (req, res) => {
   const id = req.params.id
   getOrder(id)
-    .then(result => {
-      const amount = calcTotal(result)
+  .then(result => {
+    const amount = calcTotal(result)
+    const templateVars = { result:result, total:amount}
+    res.json(templateVars)
+  })
+  res.status(200);
+})
 
             const templateVars = { result: result, total: amount }
       res.json(templateVars)
