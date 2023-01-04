@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Slice House - checkout</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/menu.css" />
+  <!-- font-awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <!-- jQuery Modal -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/menu.js"></script>
+  <script type="text/javascript" src="/scripts/users.js"></script>
+  <script type="text/javascript" src="/routes/order.js"></script>
+
+  <%- include('partials/_header') %>
+</head>
+<body>
+          <h2>
+            Your order confirmation!
+          </h2>
+
+
+          <table class="table">
+            <thead>
+
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+
+              </tr>
+            </thead>
+
+            <tbody>
+              <% for (let id of result) { %>
+                <tr>
+                  <td><%= id.name %></td>
+                  <td><%= id.price %></td>
+
+
+
+                </tr>
+                <% } %>
+                <th scope="col">Total</th>
+                <script>
+                  calculateTotal()
+                  .then(result => {
+                  const total = result.total}
+                  )
+                </script>
+
+            </tbody>
+          </table>
+
+
+</body>
+</html>

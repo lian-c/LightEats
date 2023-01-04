@@ -14,4 +14,10 @@ const getOrder = () => {
   .catch(err => err.message);
 }
 
-module.exports = { newOrder, getOrder };
+const calculateTotal = () => {
+  return db.query('SELECT  SUM(price) as Total, SUM(prep_time) as Cook_time FROM order_items INNER JOIN menu_items ON order_items.item_id=menu_items.id WHERE order_id=1;')
+  .then(data => data.rows)
+  .catch(err => err.message);
+}
+
+module.exports = { newOrder, getOrder, calculateTotal };
