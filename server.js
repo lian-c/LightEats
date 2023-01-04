@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 const bcrypt = require('bcryptjs');
 
-// app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -73,7 +73,7 @@ const adminRoutes = require("./routes/admin")
 // app.post("/register", (req, res) => {
 //   console.log(req.body);
 //   res.status(201).json({ message: "registered" })
-  
+
 // });
 
 // app.get("/profile", (req, res) => {

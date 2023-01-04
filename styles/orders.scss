@@ -1,0 +1,23 @@
+// See: https://sass-lang.com/
+body {
+  text-transform: capitalize;
+  color: #000;
+  padding-top: 50px;
+}
+
+.title {
+  text-transform: capitalize;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: larger;
+  color: rgb(255, 255, 255);
+}
+
+.cheese {
+  background:#f4f8fc;
+  padding:2rem 4rem;;
+  border-radius:12px;
+  max-width:600px;
+  margin:0 auto;
+}

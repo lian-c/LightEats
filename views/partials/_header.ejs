@@ -1,0 +1,40 @@
+
+  <div id="login-modal" class="modal">
+    <h2>Login</h2>
+      <input type="email" name="email" id="loginEmail" placeholder="Email" />
+      <input type="password" name="password" id="loginPassword" placeholder="Password" />
+      <button id="login-submit" type="submit" rel="modal:close">Login</button>
+      <a href="">Register</a>
+  </div>
+
+  <div id="register-modal" class="modal">
+    <h2>Register</h2>
+
+      <input type="name" name="name" id="registerName" placeholder="John Doe" />
+      <input type="email" name="email" id="registerEmail" placeholder="Email" />
+      <input type="password" name="password" id="registerPassword" placeholder="Password" />
+      <input type="phone_number" name="phone_number" id="registerPhone" placeholder="Phone Number" />
+      <button id="register-submit" type="submit">Register</button>
+      <a href="">Login</a>
+  </div>
+  <!-- Login and Register Modals end -->
+  <div id="cart-modal" class="modal">
+
+
+  </div>
+
+
+
+  <header>
+    <!-- navigation bar -->
+    <nav class="scroll">
+      <button id="menu-button">Menu</button>
+      <div class="title">The SLICE House</div>
+      <div class="right-navlinks">
+        <button id="cart-button"><a href="#cart-modal" rel="modal:open"><i class="fa-solid fa-cart-shopping"></i></a></button>
+        <button id="login-button"> <a href="#login-modal" rel="modal:open">Login</a></button>
+        <button id="register-button"><a href="#register-modal" rel="modal:open">Register</a></button>
+        <button id="logout-button">Logout</button>
+      </div>
+    </nav>
+  </header>
