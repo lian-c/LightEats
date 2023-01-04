@@ -1,0 +1,9 @@
+###
+
+POST http://localhost:8080/order HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "allisonjackson@mail.com",
+    "menu_items": [1,3]
+}
