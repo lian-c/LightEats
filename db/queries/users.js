@@ -7,7 +7,6 @@ const getUsers = () => {
     });
 };
 
-<<<<<<< HEAD
 // Login without encrypted password.
 const loginUser = (email) => {
   return db.query("SELECT * FROM user WHERE email = $1 && password = $2", [email, password])
@@ -21,7 +20,6 @@ const loginUser = (email) => {
 }
 
 module.exports = { getUsers };
-=======
 const getUserIDByEmail = (email) => {
   return db.query(`SELECT id FROM users WHERE email = '${email}';`)
     .then(data => {
@@ -43,4 +41,3 @@ const createGuestUser = (email) => {
 };
 
 module.exports = { getUsers, getUserIDByEmail, createGuestUser };
->>>>>>> raheel
