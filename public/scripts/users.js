@@ -2,7 +2,6 @@ let user = {};
 
 $(() => {
 
-<<<<<<< HEAD
   $('#logout-button').click(() => {
     $.post('/users/logout')
       .then(response => {
@@ -13,11 +12,9 @@ $(() => {
         console.log(response);
   })
 
-=======
   $("#logout-button").click(() => {
     $("#login-button").show();
     console.log("click worked");
->>>>>>> raheel
   });
 
   $.get('/users')
@@ -34,14 +31,12 @@ $(() => {
 
       console.log('userObject', user);
 
-<<<<<<< HEAD
       // if (userID) {
       //   $('#login-button').hide();
       //   $('#register-button').hide()
       //   $('.right-navlinks').append(`<button id="logout">Logout</button>`)
       // }
     })
-=======
       if (userID) {
         $('#login-button').hide();
         $('#register-button').hide();
@@ -49,7 +44,6 @@ $(() => {
         $('.right-navlinks').append(`<button id="logout-button">Logout</button>`);
       }
     });
->>>>>>> raheel
 
 
 
@@ -64,24 +58,12 @@ $(() => {
 
         for(userData of usersData) {
           if (email === userData.email && password === userData.password) {
-<<<<<<< HEAD
             $.post('/users/login', {userID: userData.id})
             .then($("#login-button").hide())
             .then($("#register-button").hide())
             .then($("#logout-button").show())
             .then($.modal.close())
             .then($('.right-navlinks').prepend(`<span class="welcome">Hello ${userData.name.split(' ')[0]}</span>`));
-=======
-            $.post('/users/login', { userID: userData.id })
-              .then(() => {
-                $.modal.close();
-            $('#login-button').hide();
-            $('#register-button').hide();
-            $('.right-navlinks').prepend(`Hello ${user.name.split(' ')[0]}`);
-            $('.right-navlinks').append(`<button id="logout-button">Logout</button>`);
-          });
-          }
->>>>>>> raheel
         }
       }
 

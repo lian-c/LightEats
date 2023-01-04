@@ -40,4 +40,4 @@ const createGuestUser = (email) => {
     .catch(err => err.message);
 };
 
-module.exports = { getUsers, getUserIDByEmail, createGuestUser };
+module.exports = { getUsers, getUserIDByEmail, createGuestUser, loginUser };

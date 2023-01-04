@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { getOrder} = require('../db/queries/order');
+const { getOrder } = require('../db/queries/order');
+
+const { getUserIDByEmail, createGuestUser } = require('../db/queries/users');
+const { getMenuItemByID } = require('../db/queries/menu');
 
 //calculates total price or prep time
-const calcTotal = (order, priceOrPrep ) => {
+const calcTotal = (order, priceOrPrep) => {
   let result = 0;
-  for(const price of order) {
+  for (const price of order) {
     result += price[priceOrPrep]
   }
 
@@ -18,13 +21,13 @@ const calcTotal = (order, priceOrPrep ) => {
 router.get('/:id', (req, res) => {
   const id = req.params.id
   getOrder(id)
-  .then(result => {
-    const amount = calcTotal(result,"price")
-    const time = calcTotal(result,"prep_time")
+    .then(result => {
+      const amount = calcTotal(result, "price")
+      const time = calcTotal(result, "prep_time")
 
-    const templateVars = { result:result, total:amount, prep:time}
-    res.render("orders", templateVars);
-  })
+      const templateVars = { result: result, total: amount, prep: time }
+      res.render("orders", templateVars);
+    })
 
   res.status(200);
 })
@@ -32,11 +35,14 @@ router.get('/:id', (req, res) => {
 router.get('/:id/json', (req, res) => {
   const id = req.params.id
   getOrder(id)
-  .then(result => {
-    const amount = calcTotal(result)
+    .then(result => {
+      const amount = calcTotal(result)
 
-const { getUserIDByEmail, createGuestUser } = require('../db/queries/users');
-const { getMenuItemByID } = require('../db/queries/menu');
+            const templateVars = { result: result, total: amount }
+      res.json(templateVars)
+    })
+  res.status(200);
+})
 
 router.post('/', (req, res) => {
   let orderSummary = {};
@@ -69,17 +75,6 @@ router.post('/', (req, res) => {
 
 
 });
-
-
-
-
-    const templateVars = { result:result, total:amount}
-    res.json(templateVars)
-  })
-  res.status(200);
-})
-
-
 
 
 // const renderOrder = function(order) {
