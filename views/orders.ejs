@@ -39,10 +39,8 @@
             <br>
           Here is the summary of your order.</h3>
 
-
-          <table class="table">
+            <table class="table">
             <thead>
-
               <tr>
                 <th scope="col">Product</th>
                 <th scope="col">Name</th>
@@ -55,24 +53,22 @@
               <% for (let id of result) { %>
                 <tr>
                   <td><img class="menu-photo" src="../<%= id.food_photo_url %>"></td>
-                  <td class="menu-subtype"><%= id.name %></td>
+                  <td><%= id.name %></td>
                   <td><%= id.price %></td>
                   <td><%= id.order_status %></td>
                 </tr>
                 <% } %>
-
-                <th scope="col" class="total">Total</th>
-
               </tbody>
             </table>
 
-            <div class="total"><%= total %></div>
+            <div class="total">Total <%= total %></div><br>
+
             <div class="order-time">Placed at <%= result[0]['order_time']%></div>
             <p>Estimated Time for Completion
-              <%= prep %>
+             <b><%= prep %></b>
             </p>
           </div>
-          <!-- end of class cheese -->
+
 
 </body>
 </html>
