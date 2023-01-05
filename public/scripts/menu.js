@@ -18,8 +18,10 @@ $(() => {
 
   $('main').on('click', '#addToCart-button', function() {
     // Add item to shopping cart modal
-    $("#cart-modal .modal-body").append('<div class="shopping-cart-item">Example item </div>');
+    const itemId = $(this).data('item-id'); //grabs the menu_item id but trying to figure out how to use the getMenuByID(itemId) within this
+    console.log(itemId);
 
+    $("#cart-modal .modal-body").append('<div class="shopping-cart-item">Example item </div>');
     // Show shopping cart modal
     $("#cart-modal").modal("show");
   });
@@ -55,7 +57,7 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
                                 <p class="menu-item-name">${eachItem.name} </p>
                                 <p class="menu-item-price">$${eachItem.price} </p>
 
-                              <button type="button" id="addToCart-button">
+                              <button type="button" id="addToCart-button" data-item-id=${eachItem.id}>
                                 Add to Cart
                               </button>
 
