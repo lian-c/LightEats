@@ -15,6 +15,14 @@ $(() => {
         $generateMenuItems("beverages", beverages);
       });
   });
+
+  $('main').on('click', '#addToCart-button', function() {
+    // Add item to shopping cart modal
+    $("#cart-modal .modal-body").append('<div class="shopping-cart-item">Example item </div>');
+
+    // Show shopping cart modal
+    $("#cart-modal").modal("show");
+  });
 });
 
 
@@ -46,9 +54,11 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
                                 <div class="menu-details">
                                 <p class="menu-item-name">${eachItem.name} </p>
                                 <p class="menu-item-price">$${eachItem.price} </p>
-                                <form name="addToCartForm" method="POST" action="/order">
-    <input type="submit" id="menuID${eachItem.id}" class="add-item" value="Add to cart"/>
- </form>
+
+                              <button type="button" id="addToCart-button">
+                                Add to Cart
+                              </button>
+
                               <p>${starReviews(eachItem.rating)}</p>
                               <p>${eachItem.count} ${string} | ${eachItem.rating ||"Be the first to rate this item!"} </p>
                                 </div>
@@ -56,7 +66,9 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
                                 `)
   }
 };
-
+/* <form name="addToCartForm" method="POST" action="/order">
+<input type="submit" id="menuID${eachItem.id}" class="add-item" value="Add to cart"/>
+</form> */
 
 function starReviews(average) {
   // Round to nearest half
