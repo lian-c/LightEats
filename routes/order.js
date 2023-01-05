@@ -4,6 +4,7 @@ const { getOrder } = require('../db/queries/order');
 
 const { getUserIDByEmail, createGuestUser } = require('../db/queries/users');
 const { getMenuItemByID } = require('../db/queries/menu');
+const { addNewOrder, addNewOrderItem } = require('../db/queries/order');
 
 //calculates total price or prep time
 const calcTotal = (order, priceOrPrep) => {
@@ -47,9 +48,15 @@ router.get('/:id/json', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  let orderSummary = {};
-  console.log("req.body", req.body)
+  
   const menuItemsArray = req.body.menu_items;
+  let orderSummary = {};
+  orderSummary.itemsOrdered = [];
+  menuItemsArray.forEach(itemID => {
+    getMenuItemByID(itemID)
+      .then(menuItem => orderSummary.itemsOrdered.push(menuItem[0]))
+  })
+
   getUserIDByEmail(req.body.email)
     .then(userID => {
       if (userID[0]) {
@@ -63,18 +70,15 @@ router.post('/', (req, res) => {
             orderSummary.userID = guestUser[0].id;
           })
       }
-      orderSummary.itemsOrdered = [];
-      menuItemsArray.forEach(element => {
-        console.log('element', element);
-        getMenuItemByID(element)
-          .then(menuItem => {
-            orderSummary.itemsOrdered.push(menuItem[0]);
-            console.log('orderSummary', orderSummary);
-          })
-        });
-        
-      })
-
+      return orderSummary.userID;
+    })
+    .then(userID => addNewOrder(userID))
+    .then(newOrder => newOrder[0].id)
+    .then(orderID => {
+      orderSummary.orderID = orderID;
+      menuItemsArray.forEach(itemID => addNewOrderItem(orderID, itemID))
+      res.json(orderSummary);
+    })
 
 });
 
