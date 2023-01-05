@@ -1,0 +1,28 @@
+###
+POST http://localhost:8080/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "userID": 1
+}
+
+
+###
+POST http://localhost:8080/order HTTP/1.1
+Content-Type: application/json
+
+{
+  "name":"Aingaran",
+  "email":
+}
+
+
+
+###
+POST http://localhost:8080/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "userID": 1
+}
+

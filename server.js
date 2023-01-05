@@ -6,7 +6,7 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
-
+const cookieParser = require("cookie-parser")
 const PORT = process.env.PORT || 8080;
 const app = express();
 const bcrypt = require('bcryptjs');
@@ -41,6 +41,7 @@ app.use(cookieSession({
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
+const cartRoutes = require('./routes/cart');
 const usersRoutes = require('./routes/users');
 const menuRoutes = require('./routes/menu');
 const orderRoutes = require('./routes/order');
@@ -84,7 +85,7 @@ const adminRoutes = require("./routes/admin")
 // fake login ends here//
 
 
-
+app.use('/cart', cartRoutes);
 app.use('/users', usersRoutes);
 app.use('/menu', menuRoutes);
 app.use('/order', orderRoutes)

@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 
 router.post("/login", (req, res) => {
   req.session.userId = req.body.userID;
-  res.status(200).send(req.body);
+  res.status(200).send(`the response ${JSON.stringify(req.body)}`);
 });
 
 
