@@ -7,6 +7,7 @@ const { getMenuItemByID } = require('../db/queries/menu');
 const { addNewOrder, addNewOrderItem } = require('../db/queries/order');
 
 
+
 router.get('/checkout', (req, res) => {
   res.status(200).send("checkout")
 })
@@ -39,7 +40,8 @@ router.get('/:id/json', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  
+  console.log('Cookies: ', req.cookies)
+  console.log(req.body)
   const menuItemsArray = req.body.menu_items;
   let orderSummary = {};
   orderSummary.itemsOrdered = [];

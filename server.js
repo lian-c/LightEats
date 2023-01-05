@@ -7,6 +7,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
 
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 const bcrypt = require('bcryptjs');
@@ -39,12 +40,13 @@ app.use(cookieSession({
 }))
 
 
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require('./routes/users');
 const menuRoutes = require('./routes/menu');
 const orderRoutes = require('./routes/order');
-
+const cartRoutes = require('./routes/cart');
 const adminRoutes = require("./routes/admin")
 
 // Mount all resource routes
@@ -88,6 +90,7 @@ const adminRoutes = require("./routes/admin")
 app.use('/users', usersRoutes);
 app.use('/menu', menuRoutes);
 app.use('/order', orderRoutes)
+app.use('/cart', cartRoutes)
 app.use("/admin", adminRoutes)
 // Note: mount other resources here, using the same pattern above
 

@@ -58,10 +58,16 @@
       </div>
 
       <div class="modal-body">
-        <!-- add to cart items will go here -->
+        <section class="cart-order">
+          <!-- add to cart items will go here -->
+        </section>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="checkout-button">Checkout</button>
+        <form name="checkout" method="POST" action="/order">
+          <input type="submit"  class="Checkout" value="Checkout"/>
+          <input type="hidden"  value="" name="menu_items"/>
+          </form>
+
       </div>
     </div>
   </div>

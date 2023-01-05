@@ -16,16 +16,49 @@ $(() => {
       });
   });
 
+  const menuOrderArray = [];
+
+
   $('main').on('click', '#addToCart-button', function() {
     // Add item to shopping cart modal
     const itemId = $(this).data('item-id'); //grabs the menu_item id but trying to figure out how to use the getMenuByID(itemId) within this
-    console.log(itemId);
 
-    $("#cart-modal .modal-body").append(`<div class="shopping-cart-item">Example item ${itemId}</div>`);
-    // Show shopping cart modal
+    $.get(`/cart/${itemId}`)
+    .then((menuItem) => {
+      // Add item to shopping cart modal
+      menuOrderArray.push(menuItem.id);
+    console.log(JSON.stringify(menuOrderArray));
+    // Cookies.set = ('menu_items', menuOrderArray)
+
+    $(".cart-order").append(`
+    <div class="cart-items" value="${menuItem.id}">
+ <div class="cart-img">
+ <img src="${menuItem.food_photo_url}" style={{ height="120px" }} />
+ </div>
+ <div class="cart-content">
+ <span class="menu-name">${menuItem.name}</span>
+ </div>
+ <div class="counter">
+ <div class="counter-btn">+</div>
+ <div class="count">1</div>
+ <div class="counter-btn">-</div>
+ </div>
+ <div class="prices">${menuItem.price}</div>
+ </div>
+  `);
+
+    // Show shopping cart modal optional
     $("#cart-modal").modal("show");
   });
+
 });
+$('main').on('click', '.Checkout', function() {
+console.log("clicked")
+
+})
+
+
+})
 
 
 /*Helper function takes in two arguments:

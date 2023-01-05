@@ -49,15 +49,7 @@ router.get('/featured', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id
-  getReviews(id)
-  .then(result => {
-    res.json(result)
-  })
-  res.status(200);
 
-})
 
 
 module.exports = router;
