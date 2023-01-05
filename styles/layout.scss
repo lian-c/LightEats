@@ -2,22 +2,46 @@
 body {
   text-transform: capitalize;
   color: #000;
+  
 }
 
 main {
   margin-top: 100px;
 }
 //cart modal
-.modal-cart {
+#cart-modal {
   position: fixed;
   margin: auto;
   width: 500px;
   height: 100%;
-  right: 0px;
+  right: 0;
 }
 .modal-content {
   height: 100%;
 }
+
+.modal-header{
+  margin: auto;
+  width: 90%;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
+ .modal-title{
+  font-size: 20px;
+  font-family: ‘Open Sans’;
+  font-weight: 700;
+  color: #2F3841;
+ }
+.cart-remove-all{
+  font-size: 14px;
+  font-family: ‘Open Sans’;
+  font-weight: 600;
+  color: #E44C4C;
+  cursor: pointer;
+  border-bottom: 1px solid #E44C4C;
+ }
 
 header {
   height: 50px;
@@ -152,9 +176,10 @@ margin-top: 10px;
 }
 
 table.hours {
-
   font-size: 18px;
   margin-right: auto;
   margin-left: auto;
-
 }
+
+
+
