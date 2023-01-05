@@ -1,20 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { getOrder } = require('../db/queries/order');
-
+const { calcTotal } = require('../public/scripts/orders');
 const { getUserIDByEmail, createGuestUser } = require('../db/queries/users');
 const { getMenuItemByID } = require('../db/queries/menu');
 const { addNewOrder, addNewOrderItem } = require('../db/queries/order');
-
-//calculates total price or prep time
-const calcTotal = (order, priceOrPrep) => {
-  let result = 0;
-  for (const price of order) {
-    result += price[priceOrPrep]
-  }
-
-  return result;
-}
 
 
 router.get('/checkout', (req, res) => {

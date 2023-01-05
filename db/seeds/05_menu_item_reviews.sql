@@ -1,7 +1,21 @@
 INSERT INTO menu_item_reviews (menu_item_id, rating, comments, user_id)
 VALUES
 (1, 4, 'COMMENTS', 3),
-(1, 3, 'COMMENTS', 4),
-(2, 2, 'COMMENTS', 3),
+(1, 5, 'COMMENTS', 4),
+(2, 4, 'COMMENTS', 3),
 (3, 5, 'COMMENTS', 3),
-(1, 3, 'COMMENTS', 5);
+(3, 5, 'COMMENTS', 3),
+(4, 1, 'COMMENTS', 7),
+(4, 2, 'COMMENTS', 1),
+(4, 5, 'COMMENTS', 4),
+(1, 3, 'COMMENTS', 5),
+(5, 4, 'COMMENTS', 5),
+(7, 5, 'COMMENTS', 8),
+(7, 5, 'COMMENTS', 2),
+(8, 5, 'COMMENTS', 8),
+(8, 5, 'COMMENTS', 6),
+(8, 5, 'COMMENTS', 4),
+(9, 5, 'COMMENTS', 2),
+(7, 5, 'COMMENTS', 8),
+(10, 4, 'COMMENTS', 4),
+(11, 5, 'COMMENTS', 8);

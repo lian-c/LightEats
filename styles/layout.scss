@@ -7,6 +7,17 @@ body {
 main {
   margin-top: 100px;
 }
+//cart modal
+.modal-cart {
+  position: fixed;
+  margin: auto;
+  width: 500px;
+  height: 100%;
+  right: 0px;
+}
+.modal-content {
+  height: 100%;
+}
 
 header {
   height: 50px;
@@ -90,7 +101,7 @@ nav button:hover {
   padding: 1%;
 }
 
-#logout-button {
+.hidden {
   display: none;
 }
 
@@ -134,5 +145,16 @@ margin-top: 10px;
 }
 
 .css-ouid3g {
+
+}
+.hours{
+  color:rgb(241, 229, 212);
+}
+
+table.hours {
+
+  font-size: 18px;
+  margin-right: auto;
+  margin-left: auto;
 
 }

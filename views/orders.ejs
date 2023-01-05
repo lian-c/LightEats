@@ -45,29 +45,36 @@
                 <th scope="col">Product</th>
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
-                <th scope="col">Status</th>
               </tr>
             </thead>
 
             <tbody>
-              <% for (let id of result) { %>
-                <tr>
-                  <td><img class="menu-photo" src="../<%= id.food_photo_url %>"></td>
+              <% for (let id of result) { console.log(id)%>
+                <tr><td><img class="menu-photo" src="../<%= id.food_photo_url %>"></td>
                   <td><%= id.name %></td>
-                  <td><%= id.price %></td>
-                  <td><%= id.order_status %></td>
+                  <td>$<%= id.price %></td>
                 </tr>
                 <% } %>
               </tbody>
-            </table>
+            </table><br>
 
-            <div class="total">Total <%= total %></div><br>
+            <div class="total">Total: $<%= total %></div><br>
 
-            <div class="order-time">Placed at <%= result[0]['order_time']%></div>
-            <!-- Will make it dynamic  only count prep_time for order_status not completed if prep_time is 0, then Order is Ready for Pickup! -->
-            <p>Estimated Time for Completion
-             <b><%= prep %></b>
+            <div class="order-time">Placed on <% const date = result[0]['order_time']; const time = (date.getMonth()+1)+ "/"+date.getDate() + "/"+ date.getFullYear() + " @  " + date.getHours() + ":"
+              + date.getMinutes()  ;%>
+
+              <%=time%></div>
+            <!--if order status is completed  -->
+            <% if(result[0]['order_status'] === 'completed'){ %>
+              Order is Ready for Pickup!
+
+              Rate your order
+              <% } else {%>
+                <p>Your order status: <%=result[0]['order_status']%></p>
+            <p>Estimated Time to prep is
+             <b> <%= prep %> minutes</b>
             </p>
+            <% } %>
           </div>
 
 
