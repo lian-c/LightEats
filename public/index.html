@@ -9,9 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
-
+<!-- CSS layout -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/menu.css" />
@@ -21,9 +22,13 @@
   <!-- jQuery Modal -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/menu.js"></script>
   <script type="text/javascript" src="/scripts/users.js"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -58,6 +63,17 @@
     <div class="box">
       <h1>THE SLICE HOUSE</h1>
       <p>Best Pizza in Vancouver</p>
+      <h2 class="hours">Hours of Operation</h2>
+      <table class="hours">
+        <tr><th>Sunday</th><td>9am - 10pm</td></tr>
+        <tr><th>Monday</th><td>10am - 10pm</td></tr>
+        <tr><th>Tuesday</th><td>10am - 10pm</td></tr>
+        <tr><th>Wednesday</th><td>10am - 10pm</td></tr>
+        <tr><th>Thursday</th><td>10am - 10pm</td></tr>
+        <tr><th>Friday</th><td>10am - 12am</td></tr>
+        <tr><th>Saturday</th><td>10am - 12am</td></tr>
+        </table>
+        <br><br>
       <!-- Need to add link to Order now button -->
       <button id="order-button">
         Order Now!

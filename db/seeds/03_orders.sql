@@ -1,6 +1,6 @@
 INSERT INTO orders (user_id, order_status)
 VALUES
-(3, 'completed'),
+(3, 'processing'),
 (5, 'completed'),
 (4, 'completed'),
 (4, 'completed'),
