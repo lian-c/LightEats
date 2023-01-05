@@ -33,6 +33,13 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
 
 
   for (let eachItem of menuSubType) {
+
+    let string = "ratings";
+    if (eachItem.count === "1" ){
+      string = "rating"
+    }
+
+
     $(`.${nameOfMenuSubType}`).append(`
                                 <div class="menu-item">
                                 <img class="menu-photo" src=${eachItem.food_photo_url}>
@@ -42,8 +49,29 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
                                 <form name="addToCartForm" method="POST" action="/order">
     <input type="submit" id="menuID${eachItem.id}" class="add-item" value="Add to cart"/>
  </form>
+                              <p>${starReviews(eachItem.rating)}</p>
+                              <p>${eachItem.count} ${string} | ${eachItem.rating ||"Be the first to rate this item!"} </p>
                                 </div>
                                 </div>
                                 `)
   }
 };
+
+
+function starReviews(average) {
+  // Round to nearest half
+  rating = Math.round(average * 2) / 2;
+  const stars = [];
+  // solid stars
+  for (let i = 1; i <= rating; i++){
+    stars.push('<i class="fa-solid fa-star"></i>&nbsp;');
+}
+// half values
+  if (rating % 1 !== 0) stars.push('<i class="fa-solid fa-star-half-stroke"></i>&nbsp;');
+// empty stars out of 5
+for (let x = (5 - rating); x >= 1; x--){
+console.log(x)
+    stars.push('<i class="fa-regular fa-star"></i>&nbsp;');
+}
+  return stars.join('');
+}

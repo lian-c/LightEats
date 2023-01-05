@@ -64,6 +64,7 @@
             <div class="total">Total <%= total %></div><br>
 
             <div class="order-time">Placed at <%= result[0]['order_time']%></div>
+            <!-- Will make it dynamic  only count prep_time for order_status not completed if prep_time is 0, then Order is Ready for Pickup! -->
             <p>Estimated Time for Completion
              <b><%= prep %></b>
             </p>

@@ -39,8 +39,9 @@ router.get('/:id/json', (req, res) => {
   const id = req.params.id
   getOrder(id)
     .then(result => {
-      const amount = calcTotal(result)
-      const templateVars = { result: result, total: amount }
+      const amount = calcTotal(result, "price")
+      const time = calcTotal(result, "prep_time")
+      const templateVars = { result: result, total: amount , prep: time}
       res.json(templateVars)
     })
   res.status(200);
