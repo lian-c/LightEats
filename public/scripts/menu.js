@@ -21,7 +21,7 @@ $(() => {
     const itemId = $(this).data('item-id'); //grabs the menu_item id but trying to figure out how to use the getMenuByID(itemId) within this
     console.log(itemId);
 
-    $("#cart-modal .modal-body").append('<div class="shopping-cart-item">Example item </div>');
+    $("#cart-modal .modal-body").append(`<div class="shopping-cart-item">Example item ${itemId}</div>`);
     // Show shopping cart modal
     $("#cart-modal").modal("show");
   });

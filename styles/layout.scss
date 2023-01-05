@@ -2,7 +2,7 @@
 body {
   text-transform: capitalize;
   color: #000;
-  
+
 }
 
 main {
@@ -20,28 +20,31 @@ main {
   height: 100%;
 }
 
-.modal-header{
+.modal-header {
   margin: auto;
   width: 90%;
   height: 15%;
   display: flex;
   justify-content: space-between;
   align-items: center;
- }
- .modal-title{
+}
+
+.modal-title {
   font-size: 20px;
-  font-family: ‘Open Sans’;
+  font-family: 'Open Sans';
   font-weight: 700;
   color: #2F3841;
- }
-.cart-remove-all{
+}
+
+.cart-remove-all {
   font-size: 14px;
-  font-family: ‘Open Sans’;
+  font-family: 'Open Sans';
   font-weight: 600;
   color: #E44C4C;
   cursor: pointer;
   border-bottom: 1px solid #E44C4C;
- }
+}
+
 
 header {
   height: 50px;
