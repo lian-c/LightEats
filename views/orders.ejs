@@ -60,10 +60,9 @@
 
             <div class="total">Total: $<%= total %></div><br>
 
-            <div class="order-time">Placed on <% const date = result[0]['order_time']; const time = (date.getMonth()+1)+ "/"+date.getDate() + "/"+ date.getFullYear() + " @  " + date.getHours() + ":"
-              + date.getMinutes()  ;%>
+            <div class="order-time">Placed on <%=result[0]['order_time']; %>
 
-              <%=time%></div>
+              </div>
             <!--if order status is completed  -->
             <% if(result[0]['order_status'] === 'completed'){ %>
               Order is Ready for Pickup!<br>

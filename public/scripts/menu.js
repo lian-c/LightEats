@@ -108,7 +108,7 @@ $(() => {
       $(".total-amount").text(`Total: $${totalCost}.00`);
     }); //end of counter-btn
 
-  
+
   ////
 
 
@@ -159,7 +159,7 @@ const $createCartHTML = (menuItem) => {
   </div>
   <div class="prices">Price:</div>
   $<span class="menu-prices">${menuItem.price}</span>.00
-  <button class="btn btn-danger delete-button">Delete</button>
+  <span class="delete-button"><i class="fa-solid fa-delete-left"></i></span>
   </div>
 
    `);

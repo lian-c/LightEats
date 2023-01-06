@@ -30,21 +30,8 @@ main {
 //   align-items: center;
 // }
 
-// .modal-title {
-//   font-size: 20px;
 
-//   font-weight: 700;
-//   color: #2F3841;
-// }
 
-// .cart-remove-all {
-//   font-size: 14px;
-
-//   font-weight: 600;
-//   color: #E44C4C;
-//   cursor: pointer;
-//   border-bottom: 1px solid #E44C4C;
-// }
 
 // .cart-Items{
 //   margin: auto;
@@ -94,6 +81,30 @@ main {
 //   color: #202020;
 //  }
 
+#phone-email{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+h3.modal-title {
+  display: flex;
+font-size: 24px;
+background-color: #f44336;
+height: 60px;
+font-weight: 700;
+flex-direction: column;
+justify-content: space-around;
+align-items:center;
+}
+.delete-button{
+  color: red;
+  size: 15px;
+}
+.delete-button:hover{
+  color: rgb(141, 20, 20);
+  size: 15px;
+  margin:5px;
+}
 #cart-modal {
   position: fixed;
   top: 0;
@@ -103,9 +114,9 @@ main {
   overflow-y: scroll;
 }
 #cart-modal .modal-header {
-  background-color: #f44336;
+
   color: #fff;
-  font-size: 18px;
+height: 30px;
   font-weight: bold;
 }
 
@@ -113,6 +124,7 @@ main {
   background-color: #f5f5f5;
   text-align: right;
   padding: 15px;
+  margin-top: 70px;
   border-top: 1px solid #ddd;
 }
 
@@ -129,9 +141,19 @@ main {
   overflow: hidden;
 }
 
-.cart-img img {
-  width: 100%;
-  height: auto;
+.cart-remove-all {
+  font-size: 18px;
+  margin: auto;
+  position:fixed;
+right:5px;
+  font-weight: 600;
+  color: #b05c2c;
+  cursor: pointer;
+}
+
+.cart-remove-all:hover {
+  color: #5f2b0d;
+  margin:5px;
 }
 
 .cart-content {
@@ -163,6 +185,11 @@ main {
   cursor: pointer;
 }
 
+.counter-btn:hover{
+  color: rgb(136, 136, 136);
+  margin:1px;
+}
+
 .counter .count {
   width: 30px;
   text-align: center;
@@ -179,8 +206,22 @@ main {
 .delete-button {
   margin-left: 10px;
 }
+.cart-order{
+  margin-top: 35px;
+}
 
-
+#checkout-button{
+  cursor: pointer;
+    position: relative;
+    background-color: rgb(191, 95, 16);
+    color: #fff;
+    max-width: 30%;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+}
 //cart modal end
 header {
   height: 50px;
@@ -320,5 +361,9 @@ table.hours {
   margin-left: auto;
 }
 
-
+.total {
+  float: right;
+  font-weight: 800;
+  font-size: 25px;
+}
 
