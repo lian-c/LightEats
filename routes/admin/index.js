@@ -7,13 +7,24 @@ const userRoute = require("./user");
 const loginRoute = require("./login")
 const router = express.Router();
 
-router.get("/", (req, res) => {
+const { getOrdersForHome } = require("../../lib/admin/orders")
+const { getMessagesForHome } = require("../../lib/admin/messages")
+const { getReviewsForHome } = require("../../lib/admin/reviews")
+router.get("/", async (req, res) => {
 
-  // const orders = getOrdersForHome();
-  // const reviews = getReviewsForHome();
-  // const messages = getReviewsForHome();
+  const orders = await getOrdersForHome();
+  const reviews = await getReviewsForHome();
+  const messages = await getReviewsForHome();
 
-  res.render("admin/home")
+  console.log(orders)
+
+  const templateVars = {
+    orders: orders,
+    reviews: reviews,
+    messages: messages
+  }
+
+  res.render("admin/home", templateVars)
 })
 
 
