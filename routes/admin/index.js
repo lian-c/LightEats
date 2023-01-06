@@ -9,18 +9,16 @@ const router = express.Router();
 
 const { getOrdersForHome } = require("../../lib/admin/orders")
 const { getMessagesForHome } = require("../../lib/admin/messages")
-const { getReviewsForHome } = require("../../lib/admin/reviews")
+
 router.get("/", async (req, res) => {
 
   const orders = await getOrdersForHome();
-  const reviews = await getReviewsForHome();
-  const messages = await getReviewsForHome();
+  const messages = await getMessagesForHome();
 
-  console.log(orders)
+  console.log(messages)
 
   const templateVars = {
     orders: orders,
-    reviews: reviews,
     messages: messages
   }
 

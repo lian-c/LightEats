@@ -38,13 +38,24 @@ router.get("/:id", (req, res) => {
   const orderId = req.params.id;
   // const query = "SELECT orders.id as orderId, orders.order_status as orderStatus, orders.order_time as orderTime, orders.completed_time as orderCompletedTime, users.id as userId, users.name as userName, menu_items.name as topping FROM orders JOIN users ON orders.user_id = users.id  JOIN order_items ON orders.id = order_items.order_id JOIN menu_items ON menu_items.id = order_items.item_id WHERE orders.id = $1";
 
-  const query = "SELECT menu_items.name as menuname, menu_items.id as menuid, users.name as username, users.id as userid,  price, food_photo_url, prep_time, order_status as orderstatus, order_time as ordertime, completed_time, orders.id as orderid FROM order_items INNER JOIN menu_items ON order_items.item_id=menu_items.id INNER JOIN orders ON order_id=orders.id INNER JOIN users ON users.id=orders.user_id  WHERE order_id=$1"
+  const query = "SELECT menu_items.name as menuname, menu_items.id as menuid, users.name as username, users.id as userid,  price, food_photo_url, prep_time, order_status as orderstatus, order_time as ordertime, completed_time, orders.id as orderid FROM order_items INNER JOIN menu_items ON order_items.item_id=menu_items.id INNER JOIN orders ON order_id=orders.id INNER JOIN users ON users.id=orders.user_id WHERE order_id=$1"
   const values = [orderId];
 
   return db.query(query, values)
     .then(result => {
+      
+
       const templateVars = {
-        orders: result.rows
+        order: result.rows
+      }
+
+
+      if (result.rowCount === 0)
+      {
+        const templateVars = {
+          message: "Cannot Find Order"
+        }
+        return res.status(200).render("admin/error", templateVars)
       }
 
       console.log(templateVars)

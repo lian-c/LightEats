@@ -1,25 +1,48 @@
 const express = require("express");
 const router = express.Router();
-const {getAllMenuItems} = require("../../lib/admin/menu");
+const { getAllMenuItems, getMenuItemById, getMenuCategories, getMenuByCategory, updateMenuItem } = require("../../lib/admin/menu");
 
-router.get("/", (req, res) =>
-{ 
+router.get("/", (req, res) => {
   res.render("admin/partials/test")
 })
 
 router.get("/all", (req, res) => {
-  return getAllMenuItems().then(data => {
+
+  return getAllMenuItems().then(result => {
     const templateVars = {
-      menu: data
+      menu: result
     }
+
     return res.status(200).render("admin/menu", templateVars)
   })
     .catch(error => error.message)
 })
 
-router.get("/:id", (req, res)=> {
+
+router.get("/:id", (req, res) => {
   const menuId = req.params.id;
-  res.status(200).json({menuId: menuId})
+
+
+  console.log(menuId)
+  return getMenuItemById(menuId).then(result => {
+    const templateVars = {
+      item: result
+    }
+
+    console.log("the result", result)
+
+    return res.status(200).render("admin/menu_item", templateVars)
+})
 })
 
+
+router.post("/", (req, res) => {
+
+  return updateMenuItem(req.body)
+    .then(result => {
+      res.redirect(`/admin/menu/${req.body.id}`)
+    })
+    .catch(error => error.message)
+
+})
 module.exports = router;

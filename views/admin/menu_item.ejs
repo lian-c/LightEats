@@ -1,9 +1,8 @@
 <%- include partials/header.ejs %>
 
-<div class="container d-flex flex-wrap">
+<div class="container main">
 
 
-  <% menu.map(item=>{ %>
     <div class="menu-box my-4 p-4 text-center"><img src="/<%- item.food_photo_url %>" alt="<%- item.name %>">
       <h3><%- item.name %></h3>
       <form action="/admin/menu" method="post">      <p><input class="bg-light p-2 text-center form-control" type="text" name="price" value="$<%- item.price %>"></p>
@@ -26,9 +25,7 @@
   </form>
 
     
-    
-    </div>
-    <% }) %>
+
     
   </div>
     <%- include partials/footer.ejs %>

@@ -5,8 +5,7 @@ CREATE TABLE
     messages (
         id SERIAL PRIMARY KEY,
         orderId INT,
-        userId INT,
-        content TEXT,
+        messageBody TEXT,
         date TIMESTAMP DEFAULT NOW(),
         status VARCHAR(255)
     );

@@ -1,52 +1,28 @@
 <%- include partials/header.ejs %>
 
-
-<% let bgClass = "";
-switch(orders[0].orderstatus)
-      {
-        case "new": bgClass = "danger"
-        break;
-
-        case "completed":  bgClass = "success"
-        break;
-        
-        case "processing":  bgClass = "warning"
-        break;
-
-        case "cancelled":  bgClass = "info"
-        break;
-
-        default: bgClass = "info"
-      }
-      
-      
-      
-      %>
-
 <div class="container main">
   <table class="table table-striped">
     <tr>
       <td>
-      Order ID 000 <% bgClass %></td>
-      <td class="bg-<% bgClass %>">
-        <b> <%- orders[0].orderid%></b>
+      Order ID</td>
+      <td >
+        <b> <%- order[0].orderid%></b>
       </td>
     </tr>
     <tr>
       <td>Client</td>
-      <td><a href="/admin/user/<%- orders[0].userid%>"><%- orders[0].username%></a></td>
+      <td><a href="/admin/user/<%- order[0].userid%>"><%- order[0].username%></a></td>
     </tr>
 
     <tr>
       <td>Items Ordered</td>
       <td>
       <ul>
-
-    <% for (let order of orders)
+  <% for (let item of order)
         {
           %>
                 <li>
-             <a href="/admin/menu/<%- order.menuid %>"><%- order.menuname %></a></li>
+             <a href="/admin/menu/<%- item.menuid %>"><%- item.menuname %></a></li>
           <%
         } %>
       </ul>
@@ -54,13 +30,13 @@ switch(orders[0].orderstatus)
         </tr>
     <tr>
       <td>Date Ordered</td>
-      <td><%- orders[0].ordertime%></td>
+      <td><%- order[0].ordertime%></td>
     </tr>
     <tr>
       <td>Order Status</td>
       <td>
         <select name="status" class="form-control">
-          <option value="<%- orders[0].orderstatus %>"><%- orders[0].orderstatus %></option>"
+          <option value="<%- order[0].orderstatus %>"><%- order[0].orderstatus %></option>"
           <option value="completed">Completed</option>
           <option value="cancelled">Cancelled</option>
           <option value="processing">Processing</option>
@@ -77,7 +53,7 @@ switch(orders[0].orderstatus)
       <textarea class="form-control" name="messageContent" required></textarea>
       <button class="my-2 btn btn-danger" name="messageMethod" value="email">Send Email</button>
       <button class="my-2 btn btn-info" name="messageMethod" value="text">Send Text</button>
-      <input type="hidden" name="orderId" value="<%- orders[0].orderid%>">
+      <input type="hidden" name="orderId" value="<%- order[0].orderid%>">
     </form></td>
     </tr>
   </table>

@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
 router.get("/all", (req, res) => {
   return getAllUsers().then(data => {
     const templateVars = {
-      user: data
+      users: data
     }
     return res.status(200).render("admin/users", templateVars)
   })
