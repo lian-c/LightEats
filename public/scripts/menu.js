@@ -92,7 +92,8 @@ $(() => {
 ////
 $('#cart-modal').on('click', '.cart-remove-all', function() {
   $('.cart-order').empty();
-  $(".total-amount").text(`Total: $0.00`);
+  totalCost = 0;
+  $(".total-amount").text(`Total: $${totalCost}.00`);
 });
 
   $('main').on('click', '#checkout-button', function () {
