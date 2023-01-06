@@ -35,6 +35,7 @@
     <tr>
       <td>Order Status</td>
       <td>
+        <form action="/admin/order" method="post">
         <select name="status" class="form-control">
           <option value="<%- order[0].orderstatus %>"><%- order[0].orderstatus %></option>"
           <option value="completed">Completed</option>
@@ -42,6 +43,8 @@
           <option value="processing">Processing</option>
         </select>
         <button class="btn btn-primary my-2">Update</button>
+        <input type="hidden" name="orderid" value="<%- order[0].orderid %>">
+      </form>
         </td>
     </tr>
 

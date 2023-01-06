@@ -4,6 +4,7 @@ const db = require("../../db/connection");
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
+const {getAllMessages} = require("../../lib/admin/messages")
 
 
 
@@ -13,6 +14,21 @@ const router = express.Router();
 router.get("/", (req, res) => {
   res.status(200).json({ message: "Message Route" })
 })
+
+router.get("/all", (req, res) => {
+  return getAllMessages().then(result=>{
+
+    const templateVars = {
+      messages: result
+    }
+
+    console.log(templateVars)
+    res.render("admin/messages", templateVars)
+
+  })
+  .catch(error=>console.log(error.message))
+})
+
 
 router.get("/:id", (req, res) => {
   const messageId = req.params.id;

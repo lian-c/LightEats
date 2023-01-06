@@ -43,7 +43,7 @@ router.get("/:id", (req, res) => {
 
   return db.query(query, values)
     .then(result => {
-      
+      console.log(result.rowCount)
 
       const templateVars = {
         order: result.rows
@@ -67,14 +67,19 @@ router.get("/:id", (req, res) => {
 
 // Update Order Status
 router.post("/", (req, res) => {
-  const { status, orderId } = req.body;
 
+  const { status } = req.body;
+
+  const orderId = parseInt(req.body.orderid)
   const order = {
     status,
     id: orderId
   }
 
+  console.log(order)
+
   return updateOrder(order).then(result => {
+    console.log(result)
     const templateVars = {
       orders: result.rows[0]
     }

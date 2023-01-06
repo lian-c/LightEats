@@ -1,1 +1,29 @@
-messages
+<%- include partials/header.ejs %>
+
+<div class="main container">
+  <h2>Messages</h2>
+  <table class="table table-striped">
+    <tr>
+      <td>ID</td>
+      <td>Order ID</td>
+      <td>Date</td>
+      <td>Status</td>
+    </tr>
+
+  <%
+  messages.map(message=>
+  {
+    %>
+    <tr>
+      <td><a href="/admin/message/<%-message.id %>"><%-message.id %></a></td>
+      <td><a href="/admin/order/<%-message.orderid %>"><%-message.orderid %></a></td>
+      <td><%-message.date %></td>
+      <td><%-message.status %></td>
+    </tr>
+    <%
+  })
+  %>
+</table>
+</div>
+
+<%- include partials/footer.ejs %>
