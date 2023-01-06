@@ -72,7 +72,9 @@ $(() => {
         $("#cart-modal").modal("show");
       });
 
-    // });
+    });
+
+
     $('.cart-order').on('click', '.counter-btn', function () {
       const count = $(this).siblings('.count');
       let countNum = Number(count.text());
@@ -87,14 +89,15 @@ $(() => {
       //   .then((menuItem) => {
 
       if ($(this).text() === '+') {
-        countNum++;
+        countNum = countNum + 1;
         totalCost += price
       } else {
-        countNum--;
+        countNum = countNum - 1;
         totalCost -= price;
       }
       if (countNum === 0) {
         // Remove cart item
+        $cartItem.remove();
         sessionStorage.removeItem(id);
         sessionStorage.clear();
 
@@ -103,22 +106,30 @@ $(() => {
 
       // Update total cost
       $(".total-amount").text(`Total: $${totalCost}.00`);
-    });
-  });
+    }); //end of counter-btn
+
+  
   ////
+
+
   $('.cart-order').on('click', '.delete-button', function () {
     // Find the cart item element
     const $cartItem = $(this).closest('.cart-items');
     // Get the price of the item
     const price = Number($cartItem.find('.menu-prices').text());
-    const count = $cartItem.find('.count').text();
+    const count = $cartItem.find('.count');
+    let countNum = Number(count.text()); //
     // Decrease the total cost by the price of the item
-    totalCost -= (price * count);
+    totalCost -= (price * countNum);
+    count.text(0);
     // Update the total cost element
     $(".total-amount").text(`Total: $${totalCost}.00`);
     // Remove the cart item element
     $cartItem.remove();
+
+
   });
+
 
   $('#cart-modal').on('click', '.cart-remove-all', function () {
     $('.cart-order').empty();
