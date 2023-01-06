@@ -2,35 +2,43 @@ const db = require("../../db/connection")
 const express = require("express");
 const router = express.Router();
 
+const { getUserById, getAllUsers, userSearch, updateUser } = require("../../lib/admin/users")
+const { getOrdersByUser } = require("../../lib/admin/orders")
+
 router.get("/", (req, res) => {
   res.status(200).json({ message: "Orders Route" })
 })
 
 // Get All Users from database.
 router.get("/all", (req, res) => {
-  const query = "SELECT * FROM users";
-
-  return db.query(query)
-    .then(result => { return res.status(200).json(result.rows) })
-    .catch(error => { return res.status(400).json({ error: error }) })
+  return getAllUsers().then(data => {
+    const templateVars = {
+      user: data
+    }
+    return res.status(200).render("admin/users", templateVars)
+  })
+    .catch(error => error.message)
 })
 
 // Get User by ID from database.
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   const userId = req.params.id;
-  const query = "SELECT id, email, name, phone_number, status, role FROM users WHERE id = $1";
-  const values = [userId]
+  return getUserById(userId)
+  .then(data => {
 
-  return db.query(query, values)
-    .then(result => {
-      const templateVars = {
-        user: result.rows
-      }
 
-      console.log(templateVars)
-      return res.status(200).render("admin/user", templateVars)
-    })
-    .catch(error => { return res.status(400).json({ error: error.message }) })
+    return getOrdersByUser(userId)
+    .then(userOrders =>
+      {
+        const templateVars = {
+          user: data,
+          orders: userOrders
+        }
+        return res.status(200).render("admin/user", templateVars)
+      })
+
+  })
+    .catch(error => error.message)
 })
 
 
@@ -38,20 +46,15 @@ router.get("/:id", (req, res) => {
 router.post("/search/", (req, res) => {
   const searchParam = req.body.searchParam;
 
-  const query = "SELECT * FROM users WHERE email LIKE $1 OR name LIKE  $1 OR phone_number LIKE $1";
-  const values = [`%${searchParam}%`];
-
-  return db.query(query, values)
-    .then(result => {
-      const templateVars = {
-        orders: result.rows
-      }
-
-      console.log(templateVars)
-      return res.status(200).render("admin/user", templateVars)
-    })
-    .catch(error => { return res.status(400).json({ error: error.message }) })
+  return userSearch().then(data => {
+    const templateVars = {
+      user: data
+    }
+    return res.status(200).render("admin/users", templateVars)
+  })
+    .catch(error => error.message)
 })
+
 
 
 // Update a user
@@ -59,19 +62,21 @@ router.post("/:id", (req, res) => {
 
   const { email, name, phone_number, status, userId } = req.body;
 
-  const query = "UPDATE users SET email = $1, name = $2, phone_number = $3, status = $4 WHERE id = $5";
-  const values = [email, name, phone_number, status, userId];
+  const user = {
+    email,
+    name,
+    phone_number,
+    status,
+    id: userId
+  }
 
-  return db.query(query, values)
-    .then(result => {
-      const templateVars = {
-        orders: result.rows
-      }
-
-      console.log(templateVars)
-      return res.status(200).render("admin/order", templateVars)
-    })
-    .catch(error => { return res.status(400).json({ error: error.message }) })
+  return updateUser(user).then(data => {
+    const templateVars = {
+      user: data
+    }
+    return res.status(200).render("admin/user", templateVars)
+  })
+    .catch(error => error.message)
 })
 
 
