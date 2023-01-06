@@ -1,4 +1,19 @@
 $(() => {
+  let totalCost = 0;
+  //grabs the sessionStorage and into cart
+  const sessionCart = [];
+  for (let i = 0; i < sessionStorage.length; i++) {
+    const key = sessionStorage.key(i);
+    const value = sessionStorage.getItem(key);
+    sessionCart.push(JSON.parse(value));
+  }
+  for (let item of sessionCart){
+    $createCartHTML(item)
+    totalCost += item.price;
+    $(".total-amount").text(`Total: $${totalCost}.00`);
+  }
+
+
   let user;
   $.get('/users')
     .then(usersDataResponse => {
@@ -10,6 +25,7 @@ $(() => {
         }
       });
       console.log('userObject', user);
+
     })
 
   $("#menu-button").click(() => {
@@ -28,54 +44,44 @@ $(() => {
         $generateMenuItems("beverages", beverages);
       });
   });
+
+
   // Add to cart on click
   const menuOrderArray = [];
-  let totalCost = 0; //start as 0 for total
+
+
   $('main').on('click', '#addToCart-button', function () {
     // Add item to shopping cart modal
+
     const itemId = $(this).data('item-id');
 
     $.get(`/cart/${itemId}`)
       .then((menuItem) => {
+   
         // Add item to shopping cart modal
         menuOrderArray.push(menuItem.id);
         $('#cart-summary').val(menuOrderArray);
+        //helper function that adds item to cart
+        $createCartHTML(menuItem);
 
-        $(".cart-order").append(`
-
-        <div class="cart-items" value="${menuItem.id}">
-        <div class="cart-img">
-        <img src="${menuItem.food_photo_url}" style={{ height="120px" }} />
-        </div>
-        <div class="cart-content">
-        <span class="menu-name">${menuItem.name}</span>
-        </div>
-        <div class="counter">
-        <div class="counter-btn">+</div>
-        <div class="count">1</div>
-        <div class="counter-btn">-</div>
-        </div>
-        $<span class="prices">${menuItem.price}</span>.00
-        </div>
-
-         `);
-
-         totalCost += menuItem.price; //updates the total cost
-         $(".total-amount").text(`Total: $${totalCost}.00`);
-         // Show shopping cart modal optional
-         $("#cart-modal").modal("show");
+         //save item to session  with menu id, and the object
+         sessionStorage.setItem(itemId, JSON.stringify(menuItem));
+        totalCost += menuItem.price; //updates the total cost
+        $(".total-amount").text(`Total: $${totalCost}.00`);
+        // Show shopping cart modal optional
+        $("#cart-modal").modal("show");
       });
 
   });
-
-  $('.cart-order').on('click', '.counter-btn', function() {
-    const count =  $(this).siblings('.count');
+  $('.cart-order').on('click', '.counter-btn', function () {
+    const count = $(this).siblings('.count');
     let countNum = Number(count.text());
     const $cartItem = $(this).closest('.cart-items');
-    const price = Number($cartItem.find('.prices').text());
-         console.log("price:", price)
+    const price = Number($cartItem.find('.menu-prices').text());
+    console.log("price:", price)
     if ($(this).text() === '+') {
       countNum++;
+
       totalCost += price;
     } else {
       countNum--;
@@ -84,23 +90,47 @@ $(() => {
     if (countNum === 0) {
       // Remove cart item
       $cartItem.remove();
+
     }
+    count.text(countNum);
+
     // Update total cost
     $(".total-amount").text(`Total: $${totalCost}.00`);
-    count.text(countNum);
   });
-////
-$('#cart-modal').on('click', '.cart-remove-all', function() {
-  $('.cart-order').empty();
-  totalCost = 0;
-  $(".total-amount").text(`Total: $${totalCost}.00`);
+  ////
+  $('#cart-modal').on('click', '.cart-remove-all', function () {
+    $('.cart-order').empty();
+    totalCost = 0;
+    $(".total-amount").text(`Total: $${totalCost}.00`);
+  });
 });
 
+//helper function
+const $createCartHTML = (menuItem) => {
 
+  $(".cart-order").append(`
 
+  <div class="cart-items" value="${menuItem.id}">
+  <div class="cart-img">
+  <img src="${menuItem.food_photo_url}" style={{ height="120px" }} />
+  </div>
+  <div class="cart-content">
+  <span class="menu-name">${menuItem.name}</span>
+  </div>
+  <div class="quantity">Quantity:</div>
+  <div class="counter">
+  <div class="counter-btn">-</div>
+  <div class="count">1</div>
+  <div class="counter-btn">+</div>
+  </div>
+  <div class="prices">Price:</div>
+  $<span class="menu-prices">${menuItem.price}</span>.00
+  <button class="btn btn-danger delete-button">Delete</button>
+  </div>
 
-})
+   `);
 
+}
 
 /*Helper function takes in two arguments:
 1.the name of the menu sub-type, eg: pizza, as a string
