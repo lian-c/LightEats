@@ -7,7 +7,7 @@ $(() => {
     const value = sessionStorage.getItem(key);
     sessionCart.push(JSON.parse(value));
   }
-  for (let item of sessionCart){
+  for (let item of sessionCart) {
     $createCartHTML(item)
     totalCost += item.price;
     $(".total-amount").text(`Total: $${totalCost}.00`);
@@ -57,49 +57,72 @@ $(() => {
 
     $.get(`/cart/${itemId}`)
       .then((menuItem) => {
-   
+
         // Add item to shopping cart modal
         menuOrderArray.push(menuItem.id);
         $('#cart-summary').val(menuOrderArray);
         //helper function that adds item to cart
         $createCartHTML(menuItem);
 
-         //save item to session  with menu id, and the object
-         sessionStorage.setItem(itemId, JSON.stringify(menuItem));
+        //save item to session  with menu id, and the object --- only for each unique item  unsure how to make it duplicate
+        sessionStorage.setItem(itemId, JSON.stringify(menuItem));
         totalCost += menuItem.price; //updates the total cost
         $(".total-amount").text(`Total: $${totalCost}.00`);
         // Show shopping cart modal optional
         $("#cart-modal").modal("show");
       });
 
-  });
-  $('.cart-order').on('click', '.counter-btn', function () {
-    const count = $(this).siblings('.count');
-    let countNum = Number(count.text());
-    const $cartItem = $(this).closest('.cart-items');
-    const price = Number($cartItem.find('.menu-prices').text());
-    console.log("price:", price)
-    if ($(this).text() === '+') {
-      countNum++;
+    // });
+    $('.cart-order').on('click', '.counter-btn', function () {
+      const count = $(this).siblings('.count');
+      let countNum = Number(count.text());
+      const $cartItem = $(this).closest('.cart-items');
+      const price = Number($cartItem.find('.menu-prices').text());
+      console.log("price:", price)
+      const id = $cartItem.attr('value');
+      console.log({ id })
 
-      totalCost += price;
-    } else {
-      countNum--;
-      totalCost -= price;
-    }
-    if (countNum === 0) {
-      // Remove cart item
-      $cartItem.remove();
+      //get req to grab the menu items
+      // $.get(`/cart/${id}`)
+      //   .then((menuItem) => {
 
-    }
-    count.text(countNum);
+      if ($(this).text() === '+') {
+        countNum++;
+        totalCost += price
+      } else {
+        countNum--;
+        totalCost -= price;
+      }
+      if (countNum === 0) {
+        // Remove cart item
+        sessionStorage.removeItem(id);
+        sessionStorage.clear();
 
-    // Update total cost
-    $(".total-amount").text(`Total: $${totalCost}.00`);
+      }
+      count.text(countNum);
+
+      // Update total cost
+      $(".total-amount").text(`Total: $${totalCost}.00`);
+    });
   });
   ////
+  $('.cart-order').on('click', '.delete-button', function () {
+    // Find the cart item element
+    const $cartItem = $(this).closest('.cart-items');
+    // Get the price of the item
+    const price = Number($cartItem.find('.menu-prices').text());
+    const count = $cartItem.find('.count').text();
+    // Decrease the total cost by the price of the item
+    totalCost -= (price * count);
+    // Update the total cost element
+    $(".total-amount").text(`Total: $${totalCost}.00`);
+    // Remove the cart item element
+    $cartItem.remove();
+  });
+
   $('#cart-modal').on('click', '.cart-remove-all', function () {
     $('.cart-order').empty();
+    sessionStorage.clear();
     totalCost = 0;
     $(".total-amount").text(`Total: $${totalCost}.00`);
   });
