@@ -96,11 +96,7 @@ $('#cart-modal').on('click', '.cart-remove-all', function() {
   $(".total-amount").text(`Total: $${totalCost}.00`);
 });
 
-  $('main').on('click', '#checkout-button', function () {
-    console.log("clicked")
-    // document.cookie = JSON.stringify(menuOrderArray)
 
-  })
 
 
 })

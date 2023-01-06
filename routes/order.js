@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { getOrder } = require('../db/queries/order');
-const { calcTotal } = require('../public/scripts/orders');
 const { getUserIDByEmail, createGuestUser } = require('../db/queries/users');
 const { getMenuItemByID, getMenuItemsByIDs } = require('../db/queries/menu');
 const { addNewOrder, addNewOrderItem } = require('../db/queries/order');
@@ -61,8 +60,6 @@ router.post('/', (req, res) => {
       userPromise.then(user => {
         orderSummary.userID = user.id;
         // orderSummary.userStatus = "Guest User Created";
-
-
         const menuItemsArray = req.body.menu_items.split(",");
 
         orderSummary.itemsOrdered = [];
@@ -77,47 +74,25 @@ router.post('/', (req, res) => {
                 orderSummary.orderID = orderID;
                 menuItemsArray.forEach(itemID => addNewOrderItem(orderID, itemID))
                 // console.log(orderSummary);
-                res.json(orderSummary);
+                console.log(orderID)
+                res.redirect(`/order/${orderID}`)
+
               })
           })
         })
-    //  .catch(err => {
-    //    console.log(err)
-    //  })
-  // })
-
-
-
 
 });
 
 
-// const renderOrder = function(order) {
-//   for (const food of order) {
-//     const $orderItem = createOrderItems(food);
-//     $('main').prepend($orderItem);
-//   }
-// };
-
-// const createOrderItems = function(order) {
-//   const $orderHTML = $(`
-
-//             <tbody>
-//               <tr>
-//                 <td class="w-25">
-//                   <img src="${order.food_photo_url}" class="menu_img">
-//                 </td>
-//                 <td class="menu_name">${order.name}</td>
-//                 <td class="food_price">${order.price}</td>
-
-//                 <td>
-//                 </td>
-//               </tr>
-//             </tbody>
-
-// `);
-//   return $orderHTML;
-// };
+//calculates total price or prep time for orders.ejs file
+const calcTotal = (order, priceOrPrep) => {
+  let result = 0;
+  for (const price of order) {
+    result += price[priceOrPrep]
+  }
+  return result;
+}
+module.exports = { calcTotal};
 
 
 
