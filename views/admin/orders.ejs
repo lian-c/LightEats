@@ -1,1 +1,29 @@
-order
+<%- include partials/header.ejs %>
+
+<div class="container main">
+
+  <table class="table table-striped">
+    <tr>
+      <td>Order ID</td>
+      <td>Client</td>
+      <td>Order Date</td>
+      <td>Order Status</td>
+    </tr>
+
+    <%
+    orders.map(order=>
+    {
+      %>
+        <tr>
+          <td><a href="/admin/order/<%-order.id%>"><%-order.id%></a></td>
+          <td><a href="/admin/user/<%-order.userid%>"><%-order.name%></a></td>
+          <td><%-order.order_time%></td>
+          <td><%-order.order_status%></td>
+        </tr>
+    <%})
+    %>
+
+  </table>
+</div>
+
+  <%- include partials/footer.ejs %>

@@ -1,6 +1,7 @@
 const db = require("../../db/connection")
 const express = require("express");
 const router = express.Router();
+const { getOrderById, getAllOrders, getOrdersByStatus, getOrdersByUser, updateOrder } = require("../../lib/admin/orders");
 
 router.get("/", (req, res) => {
   res.status(200).json({ message: "Orders Route" })
@@ -8,10 +9,18 @@ router.get("/", (req, res) => {
 
 // Get All Orders from database.
 router.get("/all", (req, res) => {
-  const query = "SELECT orders.id, orders.order_status, orders.order_time, users.name FROM orders JOIN users ON orders.user_id = users.id";
+  const query = "SELECT orders.id, orders.order_status, orders.order_time, users.name, users.id as userid FROM orders JOIN users ON orders.user_id = users.id";
 
-  return db.query(query, values)
-    .then(result => { return res.status(200).json(result.rows) })
+  return db.query(query)
+    .then(result => { 
+
+      const templateVars = {
+        orders: result.rows,
+      }
+      return res.status(200).render("admin/orders", templateVars)
+
+
+    })
     .catch(error => { return res.status(400).json({ error: error }) })
 })
 
@@ -46,15 +55,23 @@ router.get("/:id", (req, res) => {
 
 
 // Update Order Status
-router.post("/:id", (req, res) => {
+router.post("/", (req, res) => {
   const { status, orderId } = req.body;
 
-  const query = "UPDATE orders SET status = $1 WHERE id = $2";
-  const values = [status, orderId];
+  const order = {
+    status,
+    id: orderId
+  }
 
-  return db.query(query, values)
-    .then(result => { return res.status(201).json(result.rows) })
-    .catch(error => { return res.status(400).json({ error: error }) })
+  return updateOrder(order).then(result => {
+    const templateVars = {
+      orders: result.rows[0]
+    }
+
+    console.log(templateVars)
+    return res.status(200).render("admin/order", templateVars)
+  })
+    .catch(error => { return res.status(400).json({ error: error.message }) })
 })
 
 // 

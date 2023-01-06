@@ -27,19 +27,20 @@
     <tr>
       <td>
         <b>Recent Orders</b>
-        <table>
+        <table class="table table-striped">
 <tr>
   <td>ID</td>
   <td>Date</td>
   <td>Status</td>
 </tr>
-        </table>
+
+   
 
         <% orders.map(order =>
         {
         %>
         <tr>
-          <td><%- order.id %></td>
+          <td><a href="/admin/order/<%- order.id %>"><%- order.id %></a></td>
           <td><%- order.order_status %></td>
           <td><%- order.order_time %></td>
         </tr>
