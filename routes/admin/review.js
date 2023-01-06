@@ -3,12 +3,12 @@ const router = express.Router();
 
 router.get("/", (req, res) =>
 { 
-  res.render("admin/partials/test")
+  res.render("admin/reviews")
 })
 
 router.get("/:id", (req, res)=> {
-  const menuId = req.params.id;
-  res.status(200).json({menuId: menuId})
+  const messageId = req.params.id;
+  res.status(200).json({messageId: messageId})
 })
 
 module.exports = router;

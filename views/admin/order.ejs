@@ -1,0 +1,48 @@
+<%- include partials/header.ejs %>
+
+
+
+
+<div class="container main">
+  <table class="table table-striped">
+    <tr>
+      <td></td>
+      <td>
+        <b>Order ID: <%- orders[0].orderid%></b>
+      </td>
+    </tr>
+    <tr>
+      <td>Client</td>
+      <td><a href="/admin/user/<%- orders[0].userid%>"><%- orders[0].username%></a></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><table>
+
+    <% for (let order of orders)
+        {
+          %>
+            <tr>
+              <td></td>
+              <td><a href="/admin/menu/<%- order.menuid %>"><%- order.menuname %></a></td>
+            </tr>
+          <%
+        } %>
+      </table>
+      </td>
+        </tr>
+    <tr>
+      <td></td>
+      <td><%- orders[0].ordertime%></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%- orders[0].orderstatus %>
+        <i class="fa-solid fa-square-check "></i>
+        </td>
+    </tr>
+  </table>
+</div>
+
+<%- include partials/footer.ejs %>
