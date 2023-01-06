@@ -2,6 +2,12 @@
 
 <div class="container main">
   <h2>Order ID: <%- order[0].orderid%></h2>
+ <% if (message)
+ {
+  %>
+  <div class="p-4"><%- message %></div>
+  <%
+ } %>
   <table class="table table-striped">
 
     <tr>
@@ -44,13 +50,17 @@
     </tr>
 
     <tr>
+      <td>Messages</td>
+      <td></td>
+    </tr>
+
+    <tr>
       <td></td>
       <td>
         <form action="/admin/message" method="post">
 
       <textarea class="form-control" name="messageContent" required></textarea>
-      <button class="my-2 btn btn-danger" name="messageMethod" value="email">Send Email</button>
-      <button class="my-2 btn btn-info" name="messageMethod" value="text">Send Text</button>
+      <button class="my-2 btn btn-danger" name="messageMethod" value="text">Send Message</button>
       <input type="hidden" name="orderId" value="<%- order[0].orderid%>">
     </form></td>
     </tr>

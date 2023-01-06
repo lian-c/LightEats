@@ -1,0 +1,25 @@
+<%- include partials/header.ejs %>
+
+<div class="container main text-center">
+<h2>Message</h2>
+<table class="table table-striped">
+  <tr>
+    <td>Order Id</td>
+    <td><%- message[0].orderid %></td>
+  </tr>
+
+  <tr>
+    <td>Date</td>
+    <td><%- message[0].date %></td>
+  </tr>
+
+  <tr>
+    <td>Message content</td>
+    <td><%- message[0].messagebody %></td>
+  </tr>
+</table>
+
+
+</div>
+
+<%- include partials/footer.ejs %>
