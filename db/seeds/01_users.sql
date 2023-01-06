@@ -1,3 +1,4 @@
+-- SQLBook: Code
 INSERT INTO users (
     name, email, password, phone_number, role)
     VALUES (

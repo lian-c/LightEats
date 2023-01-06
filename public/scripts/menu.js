@@ -1,4 +1,17 @@
 $(() => {
+let user;
+  $.get('/users')
+    .then(usersDataResponse => {
+      const userID = usersDataResponse.userLoggedIn;
+
+      usersDataResponse.usersData.forEach(element => {
+        if (element.id == userID) {
+          user = element;
+        }
+      });
+      console.log('userObject', user);
+    })
+
   $("#menu-button").click(() => {
     $('main').empty();
     $('#menu-button').remove();
@@ -17,8 +30,6 @@ $(() => {
   });
 
   const menuOrderArray = [];
-
-
   $('main').on('click', '#addToCart-button', function() {
     // Add item to shopping cart modal
     const itemId = $(this).data('item-id'); //grabs the menu_item id but trying to figure out how to use the getMenuByID(itemId) within this
@@ -27,7 +38,8 @@ $(() => {
     .then((menuItem) => {
       // Add item to shopping cart modal
       menuOrderArray.push(menuItem.id);
-    console.log(JSON.stringify(menuOrderArray));
+      $('#cart-summary').val(menuOrderArray);
+
     // Cookies.set = ('menu_items', menuOrderArray)
 
     $(".cart-order").append(`
@@ -43,7 +55,7 @@ $(() => {
  <div class="count">1</div>
  <div class="counter-btn">-</div>
  </div>
- <div class="prices">${menuItem.price}</div>
+ <div class="prices">$ ${menuItem.price}.00</div>
  </div>
   `);
 
@@ -52,8 +64,9 @@ $(() => {
   });
 
 });
-$('main').on('click', '.Checkout', function() {
+$('main').on('click', '#checkout-button', function() {
 console.log("clicked")
+// document.cookie = JSON.stringify(menuOrderArray)
 
 })
 

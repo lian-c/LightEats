@@ -18,6 +18,11 @@ const getMenuItemByID = (id) => {
     .then(data => data.rows)
     .catch(err => err.message);
 }
+const getMenuItemsByIDs = (ids) => {
+  return db.query(`SELECT * FROM menu_items WHERE id = ANY($1) ;`,[ids])
+    .then(data => data.rows)
+    .catch(err => err.message);
+}
 
   // const getReviews = (menu_id) => {
     //   const query = 'SELECT ROUND(AVG(rating),2) FROM menu_item_reviews WHERE menu_item_id = $1'
@@ -26,5 +31,5 @@ const getMenuItemByID = (id) => {
     //   .then(data => data.rows)
     //   .catch(err => err.message);
     // }
-    module.exports = { getMenu, getFeatured, getMenuItemByID };
+    module.exports = { getMenu, getFeatured, getMenuItemByID, getMenuItemsByIDs };
 

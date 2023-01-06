@@ -3,7 +3,7 @@ const router = express.Router();
 const { getOrder } = require('../db/queries/order');
 const { calcTotal } = require('../public/scripts/orders');
 const { getUserIDByEmail, createGuestUser } = require('../db/queries/users');
-const { getMenuItemByID } = require('../db/queries/menu');
+const { getMenuItemByID, getMenuItemsByIDs } = require('../db/queries/menu');
 const { addNewOrder, addNewOrderItem } = require('../db/queries/order');
 
 
@@ -32,46 +32,62 @@ router.get('/:id/json', (req, res) => {
     .then(result => {
       const amount = calcTotal(result, "price")
       const time = calcTotal(result, "prep_time")
-      const templateVars = { result: result, total: amount , prep: time}
+      const templateVars = { result: result, total: amount, prep: time }
       res.json(templateVars)
     })
   res.status(200);
 })
 
+const getUserFromSession = (session) => {
+  return new Promise(function (resolve, reject) {
+    resolve({id: session.userId})
+  })
+}
+
+
 
 router.post('/', (req, res) => {
-  console.log('Cookies: ', req.cookies)
-  console.log(req.body)
-  const menuItemsArray = req.body.menu_items;
   let orderSummary = {};
-  orderSummary.itemsOrdered = [];
-  menuItemsArray.forEach(itemID => {
-    getMenuItemByID(itemID)
-      .then(menuItem => orderSummary.itemsOrdered.push(menuItem[0]))
-  })
+  let userPromise;
+  console.log(req.session.userId)
+  if (req.session.userId) {
+    // orderSummary.userStatus = "User Found";
+    userPromise = getUserFromSession(req.session)
+    orderSummary.userID = req.session.userId;
+  } else {
+    userPromise = createGuestUser(req.body.email, req.body.phone_number)
+  }
 
-  getUserIDByEmail(req.body.email)
-    .then(userID => {
-      if (userID[0]) {
-        orderSummary.userStatus = "User Found";
-        orderSummary.userID = userID[0].id;
-      }
-      else {
-        createGuestUser(req.body.email)
-          .then(guestUser => {
-            orderSummary.userStatus = "Guest User Created";
-            orderSummary.userID = guestUser[0].id;
+      userPromise.then(user => {
+        orderSummary.userID = user.id;
+        // orderSummary.userStatus = "Guest User Created";
+
+
+        const menuItemsArray = req.body.menu_items.split(",");
+
+        orderSummary.itemsOrdered = [];
+        getMenuItemsByIDs(menuItemsArray)
+        .then((rows) => {
+          // console.log(rows)
+          // rows.forEach(menuItem => orderSummary.itemsOrdered.push(menuItem))
+          orderSummary.itemsOrdered = rows
+          addNewOrder(orderSummary.userID)
+          .then(newOrder => newOrder[0].id)
+          .then(orderID => {
+                orderSummary.orderID = orderID;
+                menuItemsArray.forEach(itemID => addNewOrderItem(orderID, itemID))
+                // console.log(orderSummary);
+                res.json(orderSummary);
+              })
           })
-      }
-      return orderSummary.userID;
-    })
-    .then(userID => addNewOrder(userID))
-    .then(newOrder => newOrder[0].id)
-    .then(orderID => {
-      orderSummary.orderID = orderID;
-      menuItemsArray.forEach(itemID => addNewOrderItem(orderID, itemID))
-      res.json(orderSummary);
-    })
+        })
+    //  .catch(err => {
+    //    console.log(err)
+    //  })
+  // })
+
+
+
 
 });
 

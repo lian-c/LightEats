@@ -10,6 +10,7 @@ $(() => {
         $(".logout-button").hide()
         $(".order-button").hide()
         $(".welcome").hide();
+        $('#phone-email').show();
         console.log(response);
   })
 
@@ -42,7 +43,7 @@ $(() => {
         $(".logout-button").show()
         $(".order-button").show()
         $('.right-navlinks').prepend(`<span class="welcome">Hello ${user.name.split(' ')[0]}</span>`)
-
+        $('#phone-email').hide();
         $.modal.close()
       }
     })
@@ -65,6 +66,7 @@ $(() => {
             .then($("#register-button").hide())
             .then($(".logout-button").show())
             .then($(".order-button").show())
+            .then($('#phone-email').hide())
             .then($.modal.close())
             .then($('.right-navlinks').prepend(`<span class="welcome">Hello ${userData.name.split(' ')[0]}</span>`));
         }

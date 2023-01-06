@@ -64,8 +64,15 @@
       </div>
       <div class="modal-footer">
         <form name="checkout" method="POST" action="/order">
-          <input type="submit"  class="Checkout" value="Checkout"/>
-          <input type="hidden"  value="" name="menu_items"/>
+          <div id="phone-email" >
+          <input type="email" name="email" id="guest_email" placeholder="Email" />
+          <input type="phone_number" name="phone_number" id="guest_phone_number" placeholder="phone_number" />
+        </div>
+        <div class="total-amount">Total: $placeholder.00</div>
+</div>
+          <button type="submit" class="btn btn-primary" id="checkout-button">Checkout</button>
+          <!-- script that calculates total -->
+          <input type="hidden" id="cart-summary"  name="menu_items"/>
           </form>
 
       </div>

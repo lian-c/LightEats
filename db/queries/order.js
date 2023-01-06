@@ -10,12 +10,12 @@ const getOrder = (order_id) => {
 
 const addNewOrder = (userID) => {
   return db.query(`
-  INSERT INTO orders (user_id, order_status) 
+  INSERT INTO orders (user_id, order_status)
   VALUES (${userID}, 'new')
   RETURNING *;
   `)
     .then(data => data.rows)
-    .catch(err => err.message);
+    .catch(err => console.error(err.message));
 };
 
 const addNewOrderItem = (orderID, itemID) => {

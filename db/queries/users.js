@@ -28,16 +28,25 @@ const getUserIDByEmail = (email) => {
     .catch(err => err.message);
 };
 
-const createGuestUser = (email) => {
+const createGuestUser = (email, phone) => {
   return db.query(`
-  INSERT INTO users (email, password, role) 
-  VALUES ('${email}', 'password', 'guest')
+  INSERT INTO users (email, phone_number, password, role)
+  VALUES ('${email}', '${phone}', 'password', 'guest')
+  ON CONFLICT (email) DO NOTHING
   RETURNING *;
   `)
     .then(data => {
-      return data.rows;
+      return data.rows[0];
     })
-    .catch(err => err.message);
+    .catch(err => {
+      console.error(err.message)
+    }).then((row) => {
+      if (!row) {
+        return getUserIDByEmail(email)
+        .then(rows => rows[0]
+        )
+      } return row;
+    })
 };
 
 module.exports = { getUsers, getUserIDByEmail, createGuestUser, loginUser };
