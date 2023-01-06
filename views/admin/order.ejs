@@ -1,13 +1,34 @@
 <%- include partials/header.ejs %>
 
 
+<% let bgClass = "";
+switch(orders[0].orderstatus)
+      {
+        case "new": bgClass = "danger"
+        break;
 
+        case "completed":  bgClass = "success"
+        break;
+        
+        case "processing":  bgClass = "warning"
+        break;
+
+        case "cancelled":  bgClass = "info"
+        break;
+
+        default: bgClass = "info"
+      }
+      
+      
+      
+      %>
 
 <div class="container main">
   <table class="table table-striped">
     <tr>
-      <td>Order ID</td>
       <td>
+      Order ID 000 <% bgClass %></td>
+      <td class="bg-<% bgClass %>">
         <b> <%- orders[0].orderid%></b>
       </td>
     </tr>
@@ -50,8 +71,14 @@
 
     <tr>
       <td></td>
-      <td><textarea class="form-control">Send message</textarea>
-      <button class="my-2 btn btn-danger">Send</button></td>
+      <td>
+        <form action="/admin/message" method="post">
+
+      <textarea class="form-control" name="messageContent" required></textarea>
+      <button class="my-2 btn btn-danger" name="messageMethod" value="email">Send Email</button>
+      <button class="my-2 btn btn-info" name="messageMethod" value="text">Send Text</button>
+      <input type="hidden" name="orderId" value="<%- orders[0].orderid%>">
+    </form></td>
     </tr>
   </table>
 </div>

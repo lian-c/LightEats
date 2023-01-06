@@ -20,7 +20,7 @@ router.get("/:id", (req, res) => {
 })
 
 
-router.post("/send", (req, res) => {
+router.post("/", (req, res) => {
   const orderId = req.body.orderId;
   const messageContent = req.body.messageContent;
   const messageMethod = req.body.messageMethod;
@@ -31,8 +31,22 @@ router.post("/send", (req, res) => {
   const values = [orderId];
 
   return db.query(query, values).then(result => {
-    return res.send(result.rows[0]);
+
+    if (messageMethod == "text") {
+      return res.send(result.rows[0].phone_number);
+    }
+    else {
+      return res.send(result.rows[0].email);
+    }
+
+    // INSERT MESSAGE INTO DATABASE
+    const query = "INSERT INTO messages (orderId, content, status) VALUES ($1, $2, $3)";
+    const values = [orderId, messageContent, 'unread'];
+
+    db.query(query, values).then(result => res.send(`Message sent`).catch(error => console.log(error.message)))
+
   })
+  .catch(error=>console.log(error.message))
 
   res.send(req.body)
 
