@@ -1,5 +1,5 @@
 $(() => {
-let user;
+  let user;
   $.get('/users')
     .then(usersDataResponse => {
       const userID = usersDataResponse.userLoggedIn;
@@ -16,7 +16,7 @@ let user;
     $('main').empty();
     $('#menu-button').remove();
     $('nav').prepend(`<a href="/"><img class="home" src ="../images/the-slice-house-logo.png"></a>`);
-    $('body,html').animate({scrollTop: $('main').offset().top}, 800);
+    $('body,html').animate({ scrollTop: $('main').offset().top }, 800);
 
     $.get('/menu')
       .then((response) => {
@@ -28,47 +28,76 @@ let user;
         $generateMenuItems("beverages", beverages);
       });
   });
-
+  // Add to cart on click
   const menuOrderArray = [];
-  $('main').on('click', '#addToCart-button', function() {
+  let totalCost = 0; //start as 0 for total
+  $('main').on('click', '#addToCart-button', function () {
     // Add item to shopping cart modal
-    const itemId = $(this).data('item-id'); //grabs the menu_item id but trying to figure out how to use the getMenuByID(itemId) within this
+    const itemId = $(this).data('item-id');
 
     $.get(`/cart/${itemId}`)
-    .then((menuItem) => {
-      // Add item to shopping cart modal
-      menuOrderArray.push(menuItem.id);
-      $('#cart-summary').val(menuOrderArray);
+      .then((menuItem) => {
+        // Add item to shopping cart modal
+        menuOrderArray.push(menuItem.id);
+        $('#cart-summary').val(menuOrderArray);
 
-    // Cookies.set = ('menu_items', menuOrderArray)
+        $(".cart-order").append(`
+        <section class="cart-container">
+        <div class="cart-items" value="${menuItem.id}">
+        <div class="cart-img">
+        <img src="${menuItem.food_photo_url}" style={{ height="120px" }} />
+        </div>
+        <div class="cart-content">
+        <span class="menu-name">${menuItem.name}</span>
+        </div>
+        <div class="counter">
+        <div class="counter-btn">+</div>
+        <div class="count">1</div>
+        <div class="counter-btn">-</div>
+        </div>
+        <div class="prices">${Number(menuItem.price.toFixed(2))}</div>
+        </div>
+        </section>
+         `);
+         totalCost += menuItem.price; //updates the total cost
+         $(".total-amount").text(`Total: $${totalCost}.00`);
+         // Show shopping cart modal optional
+         $("#cart-modal").modal("show");
+      });
 
-    $(".cart-order").append(`
-    <div class="cart-items" value="${menuItem.id}">
- <div class="cart-img">
- <img src="${menuItem.food_photo_url}" style={{ height="120px" }} />
- </div>
- <div class="cart-content">
- <span class="menu-name">${menuItem.name}</span>
- </div>
- <div class="counter">
- <div class="counter-btn">+</div>
- <div class="count">1</div>
- <div class="counter-btn">-</div>
- </div>
- <div class="prices">$ ${menuItem.price}.00</div>
- </div>
-  `);
-
-    // Show shopping cart modal optional
-    $("#cart-modal").modal("show");
   });
 
-});
-$('main').on('click', '#checkout-button', function() {
-console.log("clicked")
-// document.cookie = JSON.stringify(menuOrderArray)
+  $('.cart-order').on('click', '.counter-btn', function() {
+    const count =  $(this).siblings('.count');
+         console.log("count:", count)
+    let countNum = Number(count.text());
+    const $cartItem = $(this).closest('.cart-items');
+         console.log("$cartItem:", $cartItem)
+    const price = Number($cartItem.find('.prices').text());
+         console.log("price:", price)
+    if ($(this).text() === '+') {
+      countNum++;
+      totalCost += price;
+    } else {
+      countNum--;
+      totalCost -= price;
+    }
+    if (countNum === 0) {
+      // Remove cart item
+      $cartItem.remove();
+      // Update total cost
+    }
+    $(".total-amount").text(`Total: $${totalCost}.00`);
+    count.text(countNum);
+  });
+////
 
-})
+
+  $('main').on('click', '#checkout-button', function () {
+    console.log("clicked")
+    // document.cookie = JSON.stringify(menuOrderArray)
+
+  })
 
 
 })
@@ -91,7 +120,7 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
   for (let eachItem of menuSubType) {
 
     let string = "ratings";
-    if (eachItem.count === "1" ){
+    if (eachItem.count === "1") {
       string = "rating";
     };
 
@@ -108,7 +137,7 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
                               </button>
 
                               <p>${starReviews(eachItem.rating)}</p>
-                              <p>${eachItem.count} ${string} | ${eachItem.rating ||"Be the first to rate this item!"} </p>
+                              <p>${eachItem.count} ${string} | ${eachItem.rating || "Be the first to rate this item!"} </p>
                                 </div>
                                 </div>
                                 `)
@@ -123,14 +152,14 @@ function starReviews(average) {
   rating = Math.round(average * 2) / 2;
   const stars = [];
   // solid stars
-  for (let i = 1; i <= rating; i++){
+  for (let i = 1; i <= rating; i++) {
     stars.push('<i class="fa-solid fa-star"></i>&nbsp;');
-}
-// half values
+  }
+  // half values
   if (rating % 1 !== 0) stars.push('<i class="fa-solid fa-star-half-stroke"></i>&nbsp;');
-// empty stars out of 5
-for (let x = (5 - rating); x >= 1; x--){
+  // empty stars out of 5
+  for (let x = (5 - rating); x >= 1; x--) {
     stars.push('<i class="fa-regular fa-star"></i>&nbsp;');
-}
+  }
   return stars.join('');
 };
