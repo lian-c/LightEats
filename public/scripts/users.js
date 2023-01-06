@@ -83,6 +83,40 @@ $(() => {
 
     });
 
+    // $("#register-submit").click(() => {
+    //   const name = $("#registerName").val();
+    //   const email = $("#registerEmail").val();
+    //   const password = $("#registerPassword").val();
+    //   const phone = $("#registerPhone").val();
+
+    //   // $.get('/users')
+    //   // .then(usersResonse => {
+    //   //   const usersData = usersResonse.usersData;
+
+    //   //   for(userData of usersData) {
+    //   //     if (email === userData.email && password === userData.password) {
+    //   //       $.post('/users/login', {userID: userData.id})
+    //         .then($("#login-button").hide())
+    //         .then($("#register-button").hide())
+    //         .then($(".logout-button").show())
+    //         .then($(".order-button").show())
+    //         .then($('#phone-email').hide())
+    //         .then($.modal.close())
+    //         .then($('.right-navlinks').prepend(`<span class="welcome">Hello ${userData.name.split(' ')[0]}</span>`));
+    //     }
+    //   }
+
+    // })
+
+  //   $.post(loginUrl, { email: email, password: password }, (data, status) => {
+  //     if (data.length !== 1) {
+  //       return console.log("error", data);
+  //     }
+
+  // //     return console.log(data);
+
+  //   });
+
   });
 
 

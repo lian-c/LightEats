@@ -49,4 +49,14 @@ const createGuestUser = (email, phone) => {
     })
 };
 
-module.exports = { getUsers, getUserIDByEmail, createGuestUser, loginUser };
+const registerUser = (name, email, phone , password) => {
+  const query = 'INSERT INTO users (name, email, password, phone_number, role ) VALUES ( $1, $2 ,$3 , $4, user)';
+  const values = [name,email, phone, password]
+  return db.query(query,values) .then(data => {
+    return data.rows;
+  })
+  .catch(err => err.message);
+
+};
+
+module.exports = { getUsers, getUserIDByEmail, createGuestUser, loginUser , registerUser};
