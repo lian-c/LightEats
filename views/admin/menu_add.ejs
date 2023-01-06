@@ -1,0 +1,39 @@
+<%- include partials/header.ejs %>
+
+<div class="container main">
+<h2>Add Menu Item</h2>
+<form method="post" action="/admin/menu/add">
+  <div class="form-group">
+    <input type="text" name="name" placeholder="name" class="form-control my-2">
+  </div>
+
+  <div class="form-group">
+    <input type="text" name="price" placeholder="price" class="form-control my-2">
+  </div>
+
+  <div class="form-group">
+    <input type="text" name="prep_time" placeholder="prep time" class="form-control my-2">
+  </div>
+
+  <div class="form-group">
+    <select name="description" class="form-control my-2"> 
+      <option value="">Category</option>
+      <option value="pizza">Pizza</option>
+      <option value="dipping sauce">Dipping Sauce</option>
+      <option value="chicken wings">Chicken Wings</option>
+      <option value="beverage">Beverage</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <input type="text" name="food_photo_url" placeholder="photo url" class="form-control my-2">
+  </div>
+
+  <div class="form-group">
+    <button class="form-control my-2 btn btn-primary">Add</button>
+  </div>
+
+
+  </form>
+</div>
+<%- include partials/footer.ejs %>

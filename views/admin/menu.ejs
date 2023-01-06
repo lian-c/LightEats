@@ -1,34 +1,23 @@
 <%- include partials/header.ejs %>
 
-<div class="container d-flex flex-wrap">
+<div class="main container">
 
+<h2>Menu Items</h2>
+
+<div class=" d-flex flex-wrap">
 
   <% menu.map(item=>{ %>
-    <div class="menu-box my-4 p-4 text-center"><img src="/<%- item.food_photo_url %>" alt="<%- item.name %>">
+    <div class="menu-box my-4 p-4 text-center">
+      <a href="/admin/menu/<%- item.id %>"><img src="/<%- item.food_photo_url %>" alt="<%- item.name %>">
       <h3><%- item.name %></h3>
-      <form action="/admin/menu" method="post">      <p><input class="bg-light p-2 text-center form-control" type="text" name="price" value="$<%- item.price %>"></p>
-        <select class="form-control mb-2" name="available">
-         <% if (item.available != "true"){
-            %>
-            <option value="true" selected>Available - Yes</option>
-            <%
-          }
-          else
-          {%>
-            <option value="false" selected>Available - No</option>
-          <%
-          } %>
-          <option value="true">Available - Yes</option>
-          <option value="false">Available - No</option>
-        </select>
-        <button class="btn btn-danger form-control">Update</button>
-        <input type="hidden" name="id" value="<%- item.id %>">
-  </form>
+
+
 
     
-    
+</a>
     </div>
     <% }) %>
-    
+    <div class="menu-box my-4 p-4 text-center"><a href="/menu/add"><h2>Add Item</h2></a></div>
+  </div>
   </div>
     <%- include partials/footer.ejs %>

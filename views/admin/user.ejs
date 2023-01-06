@@ -4,23 +4,33 @@
 
 
 <div class="container main">
+  <h2><%- user.name%> (Client ID: <%- user.id%>)</h2>
   <table class="table table-striped">
     <tr>
       <td>
-        <b><%- user.name%></b>
+        <label for="name">Name</label>
+        <input value="<%- user.name%>" type="text" name="name" class="form-control">
       </td>
     </tr>
 
     <tr>
       <td>
-        <b><%- user.email%></b>
+        <label for="email">Email</label>
+        <input value="<%- user.email%>" type="email" name="email" class="form-control">
       </td>
     </tr>
 
 
     <tr>
       <td>
-        <b><%- user.phone_number%></b>
+        <label for="phone_number">Phone #</label>
+        <input value="<%- user.phone_number%>" type="text" name="phone_number" class="form-control">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <button class="form-control btn btn-primary">Update</button>
       </td>
     </tr>
 
