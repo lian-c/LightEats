@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style/default.css">
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <title>Slicehouse Admin</title>
+</head>
+<body>
+  <div class="container">
+    <div class="top d-flex justify-content-between">
+      <h2 class="">slice<strong>house</strong> portal</h2>
+      <ul class="d-flex space-between">
+
+      </ul>
+    </div>
+
+    <section id="orders">
+      <h2>Orders</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Client</td>
+            <td>Order Time</td>
+            <td>Order Status</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% orders.map(order=>
+          {
+            %>
+            <tr>
+              <td><a href="/admin/order/<%- order.id%>"><%- order.id%></a></td>
+              <td><%- order.client%></td>
+              <td><%- order.order_time%></td>
+              <td><%- order.order_status%></td>
+            </tr>
+            <%
+          }) %>
+        </tbody>
+      </table>
+    </section>
+    <section><h2>Reviews</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Client</td>
+            <td>Order Time</td>
+            <td>Stars</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% orders.map(order=>
+          {
+            %>
+            <tr>
+              <td><%- order.id%></td>
+              <td><%- order.client%></td>
+              <td><%- order.order_time%></td>
+              <td><%- order.order_status%></td>
+            </tr>
+            <%
+          }) %>
+        </tbody>
+      </table></section>
+    <section><h2>Messages</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Client</td>
+            <td>Order Time</td>
+            <td>Subject</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tbody>
+            <% messages.map(message=>
+            {
+              %>
+              <tr>
+                <td><%- message.id%></td>
+                <td><%- message.client%></td>
+                <td><%- message.order_id%></td>
+                <td><%- message.time%></td>
+              </tr>
+              <%
+            }) %>
+          </tbody>
+        </tbody>
+      </table></section>
+  </div>
+

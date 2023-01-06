@@ -1,0 +1,23 @@
+<%- include partials/header.ejs %>
+
+<div class="main container">
+
+<h2>Menu Items</h2>
+
+<div class=" d-flex flex-wrap">
+
+  <% menu.map(item=>{ %>
+    <div class="menu-box my-4 p-4 text-center">
+      <a href="/admin/menu/<%- item.id %>"><img src="/<%- item.food_photo_url %>" alt="<%- item.name %>">
+      <h3><%- item.name %></h3>
+
+
+
+    
+</a>
+    </div>
+    <% }) %>
+    <div class="menu-box my-4 p-4 text-center"><a href="/menu/add"><h2>Add Item</h2></a></div>
+  </div>
+  </div>
+    <%- include partials/footer.ejs %>

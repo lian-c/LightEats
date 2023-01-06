@@ -1,0 +1,51 @@
+<%- include partials/header.ejs %>
+<div class="container main">
+
+  <h3>Last 5 Orders</h3>
+  <table class="table table-striped">
+<tr>
+  <td>ID</td>
+  <td>User</td>
+  <td>Date</td>
+  <td>Status</td>
+</tr>
+
+  <% orders.map(order =>
+  {
+    %>
+    <tr>
+      <td><a href="/admin/order/<%- order.id %>"><%- order.id %></a></td>
+      <td><%- order.name %></td>
+      <td><%- order.order_time %></td>
+      <td><%- order.order_status %></td>
+    </tr>
+    <%
+  })
+  %>
+</table>
+
+<!-- 
+<h3>Last 5 Messages</h3>
+<table class="table table-striped">
+<tr>
+<td>ID</td>
+<td>Order</td>
+<td>Date</td>
+<td>Status</td>
+</tr>
+
+<% messages.map(message =>
+{
+  %>
+  <tr>
+    <td><a href="/admin/message/<%- message.id %>"><%- message.id %></a></td>
+    <td><%- message.orderid %></td>
+    <td><%- message.date %></td>
+    <td><%- message.status %></td>
+  </tr>
+  <%
+})
+%>
+</table> -->
+</div>
+<%- include partials/footer.ejs %>

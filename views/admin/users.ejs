@@ -1,0 +1,39 @@
+<%- include partials/header.ejs %>
+
+
+
+
+<div class="container main">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Phone #</td>
+      </tr>
+    </thead>
+
+    <% users.map(user =>
+    {
+    %>
+    <tr>
+      <td>
+        <a href="/admin/user/<%- user.id%>"><%- user.name%></a>
+      </td>
+
+      <td>
+        <a href="/admin/user/<%- user.id%>"><%- user.email%></a>
+      </td>
+
+      <td>
+        <%- user.phone_number%>
+      </td>
+    </tr>
+    <%
+    }) %>
+
+
+  </table>
+</div>
+
+<%- include partials/footer.ejs %>
