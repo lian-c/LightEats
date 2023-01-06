@@ -18,13 +18,21 @@ router.get("/all", (req, res) => {
 // Get User by ID from database.
 router.get("/:id", (req, res) => {
   const userId = req.params.id;
-  const query = "SELECT * FROM users WHERE id = $1";
+  const query = "SELECT id, email, name, phone_number, status, role FROM users WHERE id = $1";
   const values = [userId]
 
   return db.query(query, values)
-    .then(result => { return res.status(200).json(result.rows) })
-    .catch(error => { return res.status(400).json({ error: error }) })
+    .then(result => {
+      const templateVars = {
+        user: result.rows
+      }
+
+      console.log(templateVars)
+      return res.status(200).render("admin/user", templateVars)
+    })
+    .catch(error => { return res.status(400).json({ error: error.message }) })
 })
+
 
 // Search for a user by email, phone number or name.
 router.post("/search/", (req, res) => {
@@ -33,12 +41,18 @@ router.post("/search/", (req, res) => {
   const query = "SELECT * FROM users WHERE email LIKE $1 OR name LIKE  $1 OR phone_number LIKE $1";
   const values = [`%${searchParam}%`];
 
-  console.log(query)
   return db.query(query, values)
-    .then(result => { return res.status(200).json(result.rows) })
-    .catch(error => { return res.status(400).json({ error: error }) })
+    .then(result => {
+      const templateVars = {
+        orders: result.rows
+      }
 
-});
+      console.log(templateVars)
+      return res.status(200).render("admin/user", templateVars)
+    })
+    .catch(error => { return res.status(400).json({ error: error.message }) })
+})
+
 
 // Update a user
 router.post("/:id", (req, res) => {
@@ -49,9 +63,17 @@ router.post("/:id", (req, res) => {
   const values = [email, name, phone_number, status, userId];
 
   return db.query(query, values)
-    .then(result => { return res.status(201).json(result.rows) })
-    .catch(error => { return res.status(400).json({ error: error }) })
+    .then(result => {
+      const templateVars = {
+        orders: result.rows
+      }
+
+      console.log(templateVars)
+      return res.status(200).render("admin/order", templateVars)
+    })
+    .catch(error => { return res.status(400).json({ error: error.message }) })
 })
+
 
 
 
