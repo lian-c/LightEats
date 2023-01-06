@@ -42,7 +42,7 @@ $(() => {
         $('#cart-summary').val(menuOrderArray);
 
         $(".cart-order").append(`
-        <section class="cart-container">
+
         <div class="cart-items" value="${menuItem.id}">
         <div class="cart-img">
         <img src="${menuItem.food_photo_url}" style={{ height="120px" }} />
@@ -55,10 +55,11 @@ $(() => {
         <div class="count">1</div>
         <div class="counter-btn">-</div>
         </div>
-        <div class="prices">${Number(menuItem.price.toFixed(2))}</div>
+        $<span class="prices">${menuItem.price}</span>.00
         </div>
-        </section>
+
          `);
+
          totalCost += menuItem.price; //updates the total cost
          $(".total-amount").text(`Total: $${totalCost}.00`);
          // Show shopping cart modal optional
@@ -69,10 +70,8 @@ $(() => {
 
   $('.cart-order').on('click', '.counter-btn', function() {
     const count =  $(this).siblings('.count');
-         console.log("count:", count)
     let countNum = Number(count.text());
     const $cartItem = $(this).closest('.cart-items');
-         console.log("$cartItem:", $cartItem)
     const price = Number($cartItem.find('.prices').text());
          console.log("price:", price)
     if ($(this).text() === '+') {
@@ -85,13 +84,16 @@ $(() => {
     if (countNum === 0) {
       // Remove cart item
       $cartItem.remove();
-      // Update total cost
     }
+    // Update total cost
     $(".total-amount").text(`Total: $${totalCost}.00`);
     count.text(countNum);
   });
 ////
-
+$('#cart-modal').on('click', '.cart-remove-all', function() {
+  $('.cart-order').empty();
+  $(".total-amount").text(`Total: $0.00`);
+});
 
   $('main').on('click', '#checkout-button', function () {
     console.log("clicked")
@@ -130,7 +132,7 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
                                 <img class="menu-photo" src=${eachItem.food_photo_url}>
                                 <div class="menu-details">
                                 <p class="menu-item-name">${eachItem.name} </p>
-                                <p class="menu-item-price">$${eachItem.price} </p>
+                                <p class="menu-item-price">$${eachItem.price}.00</p>
 
                               <button type="button" id="addToCart-button" data-item-id=${eachItem.id}>
                                 Add to Cart
@@ -143,9 +145,7 @@ const $generateMenuItems = (nameOfMenuSubType, menuSubType) => {
                                 `)
   }
 };
-/* <form name="addToCartForm" method="POST" action="/order">
-<input type="submit" id="menuID${eachItem.id}" class="add-item" value="Add to cart"/>
-</form> */
+
 
 function starReviews(average) {
   // Round to nearest half
