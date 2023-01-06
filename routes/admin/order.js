@@ -79,16 +79,13 @@ router.post("/", (req, res) => {
     id: orderId
   }
 
-  console.log(order)
 
   return updateOrder(order).then(result => {
-    console.log(result)
     const templateVars = {
       orders: result.rows[0]
     }
 
-    console.log(templateVars)
-    return res.status(200).render("admin/order", templateVars)
+    return res.redirect(`/admin/order/${orderId}`)
   })
     .catch(error => { return res.status(400).json({ error: error.message }) })
 })

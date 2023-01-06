@@ -78,17 +78,12 @@ router.post("/", (req, res) => {
         const values = [orderId, message, 'sent'];
 
         db.query(query, values)
-          .then(result => res.send(`Message sent`)
-            .catch(error => console.log(error.message)))
+          .then(result => res.send(`Message sent`))
+            .catch(error => console.log(error.message))
 
       })
   })
     .catch(error => console.log(error.message))
-
-  res.send(req.body)
-
-
-
 
   // Add message to details to messages table in database.
 
